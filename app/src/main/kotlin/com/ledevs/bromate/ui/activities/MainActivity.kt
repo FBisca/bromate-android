@@ -1,6 +1,17 @@
 package com.ledevs.bromate.ui.activities
 
-import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import com.ledevs.bromate.BaseActivity
+import com.ledevs.bromate.di.subcomponent.MainActivityComponent
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    builder<MainActivityComponent.Builder>()
+        .module(MainActivityComponent.MainActivityModule(this))
+        .build()
+        .injectMembers(this)
+  }
 }

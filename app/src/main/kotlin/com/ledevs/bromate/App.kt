@@ -1,13 +1,18 @@
 package com.ledevs.bromate
 
 import android.app.Application
-import com.ledevs.bromate.di.component.ApplicationComponent
-import com.ledevs.bromate.di.component.DaggerApplicationComponent
+import com.ledevs.bromate.di.component.AppComponent
+import com.ledevs.bromate.di.component.DaggerAppComponent
+import com.ledevs.bromate.di.module.ActivityBuilder
 import com.ledevs.bromate.di.module.AndroidModule
+import javax.inject.Inject
 
 class App : Application() {
 
-  private lateinit var component: ApplicationComponent
+  @Inject
+  lateinit var activityComponents: Map<Class<*>, ActivityBuilder>
+
+  lateinit var component: AppComponent
 
   override fun onCreate() {
     super.onCreate()
@@ -15,8 +20,13 @@ class App : Application() {
   }
 
   private fun initApplicationComponent() {
-    component = DaggerApplicationComponent.builder()
+    component = DaggerAppComponent.builder()
         .androidModule(AndroidModule(this))
         .build()
+
+    component.injectMembers(this)
   }
 }
+
+val Application.component
+  get() = (this as App).component

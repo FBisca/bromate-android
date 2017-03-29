@@ -8,7 +8,6 @@ import dagger.Provides
 class AndroidModule(
     private val context: Context
 ) {
-
   @Provides
   fun context() = this.context
 }
