@@ -1,6 +1,6 @@
 package com.ledevs.bromate.di
 
-import com.ledevs.bromate.BaseActivity
+import com.ledevs.bromate.ui.activities.BaseActivity
 import dagger.MembersInjector
 import dagger.Module
 import dagger.Provides
@@ -9,7 +9,7 @@ import javax.inject.Scope
 @Scope
 annotation class ActivityScope
 
-interface ActivitySubcomponent<T : BaseActivity> : MembersInjector<T>
+interface ActivityComponent<T : BaseActivity> : MembersInjector<T>
 
 @Module
 abstract class ActivityModule<out T: BaseActivity>(val value: T) {
@@ -20,7 +20,7 @@ abstract class ActivityModule<out T: BaseActivity>(val value: T) {
   }
 }
 
-interface ActivityBuilders<in M : ActivityModule<*>, C : ActivitySubcomponent<*>> {
+interface ActivityBuilders<in M : ActivityModule<*>, C : ActivityComponent<*>> {
   fun module(module: M) : ActivityBuilders<M, C>
   fun build(): C
 }

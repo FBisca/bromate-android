@@ -27,6 +27,3 @@ class App : Application() {
     component.injectMembers(this)
   }
 }
-
-val Application.component
-  get() = (this as App).component
