@@ -1,21 +1,21 @@
 package com.ledevs.bromate.di.subcomponent
 
-import com.ledevs.bromate.di.ActivityBuilders
-import com.ledevs.bromate.di.ActivityModule
-import com.ledevs.bromate.di.ActivityScope
-import com.ledevs.bromate.di.ActivityComponent
-import com.ledevs.bromate.di.subcomponent.MainActivityComponent.MainActivityModule
-import com.ledevs.bromate.ui.activities.MainActivity
+import com.ledevs.bromate.contract.MainContract
+import com.ledevs.bromate.di.ViewBuilders
+import com.ledevs.bromate.di.ViewComponent
+import com.ledevs.bromate.di.ViewModule
+import com.ledevs.bromate.di.ViewScope
+import com.ledevs.bromate.di.subcomponent.MainActivityComponent.MainViewModule
 import dagger.Module
 import dagger.Subcomponent
 
-@ActivityScope
-@Subcomponent(modules = arrayOf(MainActivityModule::class))
-interface MainActivityComponent : ActivityComponent<MainActivity> {
+@ViewScope
+@Subcomponent(modules = arrayOf(MainViewModule::class))
+interface MainActivityComponent : ViewComponent<MainContract.View> {
 
   @Subcomponent.Builder
-  interface Builder : ActivityBuilders<MainActivityModule, MainActivityComponent>
+  interface Builder : ViewBuilders<MainViewModule, MainActivityComponent>
 
   @Module
-  class MainActivityModule(activity: MainActivity): ActivityModule<MainActivity>(activity)
+  class MainViewModule(view: MainContract.View): ViewModule<MainContract.View>(view)
 }

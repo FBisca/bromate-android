@@ -1,6 +1,6 @@
 package com.ledevs.bromate.di.module
 
-import com.ledevs.bromate.di.ActivityBuilders
+import com.ledevs.bromate.di.ViewBuilder
 import com.ledevs.bromate.di.subcomponent.MainActivityComponent
 import com.ledevs.bromate.ui.activities.MainActivity
 import dagger.Binds
@@ -11,11 +11,9 @@ import dagger.multibindings.IntoMap
 @Module(
     subcomponents = arrayOf(MainActivityComponent::class)
 )
-abstract class ActivitiesModule {
+abstract class ViewsModule {
   @Binds
   @IntoMap
   @ClassKey(MainActivity::class)
-  abstract fun bindsMainActivity(builder: MainActivityComponent.Builder): ActivityBuilder
+  abstract fun bindsMainActivity(builder: MainActivityComponent.Builder): ViewBuilder
 }
-
-typealias ActivityBuilder = @JvmSuppressWildcards ActivityBuilders<*, *>

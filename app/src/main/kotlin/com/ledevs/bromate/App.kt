@@ -1,16 +1,16 @@
 package com.ledevs.bromate
 
 import android.app.Application
+import com.ledevs.bromate.di.ViewBuilder
 import com.ledevs.bromate.di.component.AppComponent
 import com.ledevs.bromate.di.component.DaggerAppComponent
-import com.ledevs.bromate.di.module.ActivityBuilder
 import com.ledevs.bromate.di.module.AndroidModule
 import javax.inject.Inject
 
 class App : Application() {
 
   @Inject
-  lateinit var activityComponents: Map<Class<*>, ActivityBuilder>
+  lateinit var viewComponents: Map<Class<*>, ViewBuilder>
 
   lateinit var component: AppComponent
 
