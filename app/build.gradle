@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: "kotlin-allopen"
 
 android {
   compileSdkVersion 25
@@ -25,6 +26,11 @@ android {
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
   }
+}
+
+allOpen {
+  annotation("dagger.Module")
+  annotation("dagger.Provides")
 }
 
 dependencies {
