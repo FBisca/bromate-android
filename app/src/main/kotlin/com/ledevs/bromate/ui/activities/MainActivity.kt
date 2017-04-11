@@ -15,8 +15,9 @@ class MainActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
     initInjection()
+
+    setContentView(view.getContentView())
   }
 
   private fun initInjection() {
