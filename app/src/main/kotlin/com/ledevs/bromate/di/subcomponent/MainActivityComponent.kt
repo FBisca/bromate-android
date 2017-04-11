@@ -30,8 +30,8 @@ interface MainActivityComponent : ActivityComponent<MainActivity> {
 
     @ViewScope
     @Provides
-    fun providesView(activity: MainActivity):  MainContract.View {
-      return MainView()
+    fun providesView(activity: MainActivity): MainContract.View {
+      return MainView(activity)
     }
   }
 }
