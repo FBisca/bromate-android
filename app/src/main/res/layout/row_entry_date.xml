@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingLeft="@dimen/screen_margin"
+          android:paddingRight="@dimen/screen_margin"
+          android:paddingTop="@dimen/item_margin"
+          android:paddingBottom="@dimen/item_margin"
+          android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+          android:fontFamily="sans-serif-medium"
+          tools:text="Segunda-feira, 13/04"/>
