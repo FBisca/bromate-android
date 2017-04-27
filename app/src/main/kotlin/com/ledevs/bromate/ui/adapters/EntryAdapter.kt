@@ -1,10 +1,9 @@
 package com.ledevs.bromate.ui.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import com.ledevs.bromate.ui.adapters.EntryAdapter.EntryViewHolder
+import com.ledevs.bromate.ui.adapters.viewholder.EntryViewHolder
+import com.ledevs.bromate.ui.viewmodel.EntryViewModel
 
 class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
 
@@ -32,29 +31,5 @@ class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
       is EntryViewModel.EntryRowViewModel -> VIEW_TYPE_ROW
       is EntryViewModel.EntryDateViewModel -> VIEW_TYPE_DATE
     }
-  }
-
-  sealed class EntryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    abstract fun bind(entryViewModel: EntryViewModel)
-
-    class EntryRowViewHolder(viewParent: ViewParent) : EntryViewHolder() {
-      override fun bind(entryViewModel: EntryViewModel) {
-
-      }
-    }
-    class EntryDateViewHolder(viewParent: ViewParent) : EntryViewHolder()
-  }
-
-  sealed class EntryViewModel {
-    data class EntryDateViewModel(
-        val date: String
-    ) : EntryViewModel()
-
-    data class EntryRowViewModel(
-        val value: String,
-        val title: String,
-        val description: String,
-        val type: Int
-    ) : EntryViewModel()
   }
 }
