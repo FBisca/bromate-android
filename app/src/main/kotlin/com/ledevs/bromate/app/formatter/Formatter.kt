@@ -4,4 +4,5 @@ import java.util.*
 
 interface Formatter {
   fun dateToMonth(date: Date): String
+  fun dateToDay(date: Date): String
 }

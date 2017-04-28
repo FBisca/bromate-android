@@ -10,4 +10,9 @@ class LocaleFormatter(locale: Locale) : Formatter {
   override fun dateToMonth(date: Date): String {
     return dateFormat.format(date)
   }
+
+  override fun dateToDay(date: Date): String {
+    return dateFormat.format(date)
+  }
+
 }
