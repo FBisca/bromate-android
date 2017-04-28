@@ -1,8 +1,7 @@
 package com.ledevs.bromate.di.component
 
 import com.ledevs.bromate.app.App
-import com.ledevs.bromate.di.module.ActivityBindModule
-import com.ledevs.bromate.di.module.AndroidModule
+import com.ledevs.bromate.di.module.*
 import dagger.Component
 import dagger.MembersInjector
 import javax.inject.Singleton
@@ -11,6 +10,9 @@ import javax.inject.Singleton
 @Component(
     modules = arrayOf(
         AndroidModule::class,
+        NetworkModule::class,
+        ParserModule::class,
+        RepositoryModule::class,
         ActivityBindModule::class
     )
 )
