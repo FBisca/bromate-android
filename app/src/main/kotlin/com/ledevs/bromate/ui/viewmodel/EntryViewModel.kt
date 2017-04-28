@@ -1,6 +1,7 @@
 package com.ledevs.bromate.ui.viewmodel
 
 sealed class EntryViewModel {
+
   data class EntryDateViewModel(
       val date: String
   ) : EntryViewModel()
@@ -11,4 +12,5 @@ sealed class EntryViewModel {
       val description: String,
       val type: Int
   ) : EntryViewModel()
+
 }
