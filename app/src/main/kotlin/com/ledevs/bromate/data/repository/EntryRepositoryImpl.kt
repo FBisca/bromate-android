@@ -11,6 +11,6 @@ class EntryRepositoryImpl(
     private val formatter: Formatter
 ) : EntryRepository {
   override fun listEntries(month: Date): Single<List<Entry>> {
-    return entryApi.getEntries(formatter.dateToMonth(month))
+    return entryApi.getEntries(formatter.format(month, Formatter.FORMAT_YEAR_MONTH))
   }
 }

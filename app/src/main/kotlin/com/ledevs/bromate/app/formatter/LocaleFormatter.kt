@@ -1,18 +1,11 @@
 package com.ledevs.bromate.app.formatter
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
-class LocaleFormatter(locale: Locale) : Formatter {
-
-  private val dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM, locale)
-
-  override fun dateToMonth(date: Date): String {
-    return dateFormat.format(date)
+class LocaleFormatter(private val locale: Locale) : Formatter {
+  override fun format(date: Date, format: String): String {
+    return SimpleDateFormat(format, locale).format(date)
   }
-
-  override fun dateToDay(date: Date): String {
-    return dateFormat.format(date)
-  }
-
 }

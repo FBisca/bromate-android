@@ -8,7 +8,7 @@ sealed class EntryViewModel {
   companion object {
     fun createFrom(formatter: Formatter, entries: List<Entry>): List<EntryViewModel> {
       return entries
-          .groupBy { formatter.dateToDay(it.date) }
+          .groupBy { formatter.format(it.date, Formatter.FORMAT_DAY_DESCRIPTION) }
           .flatMap {
             val header = EntryDateViewModel(it.key)
             val items = it.value.map {
