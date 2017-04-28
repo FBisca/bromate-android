@@ -1,5 +1,6 @@
 package com.ledevs.bromate.app.viewmodel
 
+import android.graphics.drawable.Drawable
 import com.ledevs.bromate.app.formatter.Formatter
 import com.ledevs.bromate.data.model.Entry
 
@@ -28,7 +29,9 @@ sealed class EntryViewModel {
       val value: String,
       val title: String,
       val description: String,
-      val type: Int
+      val hour: String,
+      val type: Int,
+      val image: Drawable
   ) : EntryViewModel()
 
 }

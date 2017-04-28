@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+    <variable name="entry" type="com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryRowViewModel"/>
+  </data>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/entry_type_frame"
@@ -15,16 +20,16 @@
         android:layout_marginLeft="@dimen/screen_margin"
         android:layout_marginStart="@dimen/screen_margin">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/entry_type"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_establishment"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_local_grocery_store_black_24dp"
-            tools:backgroundTint="@color/colorAccent"
-            tools:tint="@android:color/white"/>
+      <android.support.v7.widget.AppCompatImageView
+          android:id="@+id/entry_type"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_gravity="center"
+          android:background="@drawable/bg_establishment"
+          android:scaleType="center"
+          app:srcCompat="@drawable/ic_local_grocery_store_black_24dp"
+          tools:backgroundTint="@color/colorAccent"
+          tools:tint="@android:color/white"/>
 
     </FrameLayout>
 
@@ -39,47 +44,53 @@
         android:layout_toRightOf="@+id/entry_type_frame"
         android:minHeight="48dp">
 
-        <TextView
-            android:id="@+id/entry_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/entry_hour"
-            android:layout_toStartOf="@id/entry_hour"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorAccent"
-            tools:text="- R$ 300.00"/>
+      <TextView
+          android:id="@+id/entry_value"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true"
+          android:layout_toLeftOf="@+id/entry_hour"
+          android:layout_toStartOf="@id/entry_hour"
+          android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+          android:textColor="@color/colorAccent"
+          android:text="@{entry.value}"
+          tools:text="- R$ 300.00"/>
 
-        <TextView
-            android:id="@+id/entry_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/entry_value"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            tools:text="Mercado"/>
+      <TextView
+          android:id="@+id/entry_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/entry_value"
+          android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+          android:text="@{entry.title}"
+          tools:text="Mercado"/>
 
-        <TextView
-            android:id="@+id/entry_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/entry_title"
-            android:alpha="0.8"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:text="Sem descrição"/>
+      <TextView
+          android:id="@+id/entry_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/entry_title"
+          android:alpha="0.8"
+          android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+          android:text="@{entry.description}"
+          tools:text="Sem descrição"/>
 
-        <TextView
-            android:id="@+id/entry_hour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="@+id/entry_value"
-            android:layout_gravity="end"
-            android:alpha="0.6"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            tools:text="13:50"/>
+      <TextView
+          android:id="@+id/entry_hour"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentEnd="true"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentTop="@+id/entry_value"
+          android:layout_gravity="end"
+          android:alpha="0.6"
+          android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+          android:text="@{entry.hour}"
+          tools:text="13:50"/>
 
     </RelativeLayout>
 
-</RelativeLayout>
+  </RelativeLayout>
+
+</layout>
