@@ -5,7 +5,7 @@ apply plugin: "kotlin-allopen"
 
 android {
   compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+  buildToolsVersion "25.0.3"
 
   defaultConfig {
     applicationId "com.ledevs.bromate"
@@ -28,6 +28,10 @@ android {
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
   }
+
+  dataBinding {
+    enabled = true
+  }
 }
 
 allOpen {
@@ -43,6 +47,10 @@ dependencies {
   compile "com.android.support:recyclerview-v7:$support_version"
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile "com.google.dagger:dagger:$dagger_version"
+  compile "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+  compile "com.squareup.retrofit2:retrofit:$retrofit2_version"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+  compile "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
   compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
