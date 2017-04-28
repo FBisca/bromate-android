@@ -1,7 +1,7 @@
-package com.ledevs.bromate.ui.activities
+package com.ledevs.bromate.app.ui.activities
 
 import android.os.Bundle
-import com.ledevs.bromate.contract.MainContract
+import com.ledevs.bromate.app.contract.MainContract
 import com.ledevs.bromate.di.subcomponent.MainActivityComponent
 import javax.inject.Inject
 

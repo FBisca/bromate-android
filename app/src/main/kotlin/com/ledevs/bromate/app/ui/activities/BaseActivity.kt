@@ -1,7 +1,7 @@
-package com.ledevs.bromate.ui.activities
+package com.ledevs.bromate.app.ui.activities
 
 import android.support.v7.app.AppCompatActivity
-import com.ledevs.bromate.App
+import com.ledevs.bromate.app.App
 import com.ledevs.bromate.di.ActivityInjectionBuilder
 
 abstract class BaseActivity : AppCompatActivity() {

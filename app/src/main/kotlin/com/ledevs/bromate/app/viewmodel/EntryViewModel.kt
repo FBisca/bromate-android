@@ -1,4 +1,4 @@
-package com.ledevs.bromate.ui.viewmodel
+package com.ledevs.bromate.app.viewmodel
 
 sealed class EntryViewModel {
 

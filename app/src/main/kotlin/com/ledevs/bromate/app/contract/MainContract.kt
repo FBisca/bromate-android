@@ -1,4 +1,4 @@
-package com.ledevs.bromate.contract
+package com.ledevs.bromate.app.contract
 
 object MainContract {
 

@@ -1,9 +1,9 @@
-package com.ledevs.bromate.ui.adapters.viewholder
+package com.ledevs.bromate.app.ui.adapters.viewholder
 
 import android.support.annotation.LayoutRes
 import android.view.ViewGroup
 import com.ledevs.bromate.R
-import com.ledevs.bromate.ui.viewmodel.EntryViewModel
+import com.ledevs.bromate.app.viewmodel.EntryViewModel
 
 sealed class EntryViewHolder(
     @LayoutRes layoutRes: Int,

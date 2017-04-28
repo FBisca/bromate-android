@@ -1,6 +1,6 @@
 package com.ledevs.bromate.di
 
-import com.ledevs.bromate.ui.activities.BaseActivity
+import com.ledevs.bromate.app.ui.activities.BaseActivity
 import dagger.MembersInjector
 import dagger.Module
 import dagger.Provides

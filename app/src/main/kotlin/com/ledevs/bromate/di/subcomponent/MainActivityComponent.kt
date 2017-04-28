@@ -1,14 +1,14 @@
 package com.ledevs.bromate.di.subcomponent
 
-import com.ledevs.bromate.contract.MainContract
+import com.ledevs.bromate.app.contract.MainContract
 import com.ledevs.bromate.di.ActivityComponent
 import com.ledevs.bromate.di.ActivityComponentBuilders
 import com.ledevs.bromate.di.ActivityModule
 import com.ledevs.bromate.di.ViewScope
 import com.ledevs.bromate.di.subcomponent.MainActivityComponent.MainActivityModule
-import com.ledevs.bromate.presenter.MainPresenter
-import com.ledevs.bromate.ui.activities.MainActivity
-import com.ledevs.bromate.ui.view.MainView
+import com.ledevs.bromate.app.presenter.MainPresenter
+import com.ledevs.bromate.app.ui.activities.MainActivity
+import com.ledevs.bromate.app.ui.view.MainView
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent

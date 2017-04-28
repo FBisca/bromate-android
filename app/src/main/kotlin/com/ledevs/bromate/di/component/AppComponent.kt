@@ -1,6 +1,6 @@
 package com.ledevs.bromate.di.component
 
-import com.ledevs.bromate.App
+import com.ledevs.bromate.app.App
 import com.ledevs.bromate.di.module.ActivityBindModule
 import com.ledevs.bromate.di.module.AndroidModule
 import dagger.Component

@@ -1,4 +1,4 @@
-package com.ledevs.bromate
+package com.ledevs.bromate.app
 
 import android.app.Application
 import com.ledevs.bromate.di.ActivityInjectionBuilder
