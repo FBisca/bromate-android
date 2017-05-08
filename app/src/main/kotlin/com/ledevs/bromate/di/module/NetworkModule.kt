@@ -18,7 +18,7 @@ class NetworkModule {
         .baseUrl("http://www.google.com/")
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
   }
 

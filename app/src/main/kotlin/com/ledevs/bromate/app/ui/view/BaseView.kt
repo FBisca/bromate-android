@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.contract
+package com.ledevs.bromate.app.ui.view
 
 import android.view.View
 

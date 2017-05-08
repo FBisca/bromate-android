@@ -11,13 +11,24 @@ sealed class EntryViewModel {
       return entries
           .groupBy { formatter.format(it.date, Formatter.FORMAT_DAY_DESCRIPTION) }
           .flatMap {
-            val header = EntryDateViewModel(it.key)
-            val items = it.value.map {
-              EntryRowViewModel(it.value.toString(), it.title, it.description, 0)
-            }
+            val (date, values) = it
+
+            val header = EntryDateViewModel(date)
+            val items = values.map { createFrom(formatter, it) }
 
             listOf(header, *items.toTypedArray())
           }
+    }
+
+    fun createFrom(formatter: Formatter, entry: Entry): EntryRowViewModel {
+      return EntryRowViewModel(
+          entry.value.toString(),
+          entry.title,
+          entry.description,
+          formatter.format(entry.date, Formatter.FORMAT_HOUR_DESCRIPTION),
+          1,
+          null
+      )
     }
   }
 
@@ -31,7 +42,7 @@ sealed class EntryViewModel {
       val description: String,
       val hour: String,
       val type: Int,
-      val image: Drawable
+      val image: Drawable?
   ) : EntryViewModel()
 
 }
