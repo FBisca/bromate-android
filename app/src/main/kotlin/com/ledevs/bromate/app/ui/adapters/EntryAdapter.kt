@@ -10,7 +10,7 @@ class EntryAdapter : RecyclerView.Adapter<EntryViewHolder<*>>() {
   val VIEW_TYPE_ROW = 1
   val VIEW_TYPE_DATE = 2
 
-  private val items = mutableListOf<EntryViewModel>()
+  val items = mutableListOf<EntryViewModel>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder<*> {
     return when (viewType) {

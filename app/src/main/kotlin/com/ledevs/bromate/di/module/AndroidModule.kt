@@ -19,7 +19,7 @@ class AndroidModule(
   @Provides
   @Suppress("DEPRECATION")
   fun locale(): Locale {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       return this.context.resources.configuration.locales.get(0)
     } else {
       return this.context.resources.configuration.locale

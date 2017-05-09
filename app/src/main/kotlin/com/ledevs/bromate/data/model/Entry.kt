@@ -11,4 +11,5 @@ data class Entry(
 )
 
 enum class EntryType {
+  GROCERIES
 }

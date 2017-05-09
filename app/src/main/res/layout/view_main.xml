@@ -62,7 +62,8 @@
       android:layout_marginRight="@dimen/item_margin"
       android:layout_marginBottom="@dimen/item_margin">
 
-    <View
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/entry_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/border_white"/>

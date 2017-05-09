@@ -1,6 +1,7 @@
 package com.ledevs.bromate.app.ui.view
 
 import android.content.Context
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,6 @@ class MainView @JvmOverloads constructor(
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_main, this)
-  }
-
-  override fun getContentView(): View {
-    return this
   }
 
   override fun getCurrentMonth(): Date {
