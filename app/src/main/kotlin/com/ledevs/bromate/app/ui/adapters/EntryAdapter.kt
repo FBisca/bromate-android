@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import com.ledevs.bromate.app.ui.adapters.viewholder.EntryViewHolder
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
 
-class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
+class EntryAdapter : RecyclerView.Adapter<EntryViewHolder<*>>() {
 
   val VIEW_TYPE_ROW = 1
   val VIEW_TYPE_DATE = 2
 
   private val items = mutableListOf<EntryViewModel>()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder<*> {
     return when (viewType) {
       VIEW_TYPE_ROW -> EntryViewHolder.EntryRowViewHolder(parent)
       VIEW_TYPE_DATE -> EntryViewHolder.EntryDateViewHolder(parent)
@@ -20,7 +20,7 @@ class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
     }
   }
 
-  override fun onBindViewHolder(holder: EntryViewHolder, position: Int) {
+  override fun onBindViewHolder(holder: EntryViewHolder<*>, position: Int) {
     holder.bind(items[position])
   }
 

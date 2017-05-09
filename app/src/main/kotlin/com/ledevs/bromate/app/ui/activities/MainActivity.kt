@@ -13,13 +13,12 @@ class MainActivity : BaseActivity() {
   @Inject
   lateinit var view: MainContract.View
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     initInjection()
 
     setContentView(view.getContentView())
-    presenter.attachView()
+    presenter.attachView(view)
   }
 
   override fun onDestroy() {

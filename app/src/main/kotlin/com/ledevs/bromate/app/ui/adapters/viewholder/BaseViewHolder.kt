@@ -1,15 +1,12 @@
 package com.ledevs.bromate.app.ui.adapters.viewholder
 
-import android.support.annotation.LayoutRes
+import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.ViewGroup
 
-abstract class BaseViewHolder<in T>(
-    @LayoutRes layoutRes: Int,
-    parent: ViewGroup
+abstract class BaseViewHolder<in T, out DB : ViewDataBinding>(
+    protected val viewDataBinding: DB
 ) : RecyclerView.ViewHolder(
-    LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
+    viewDataBinding.root
 ) {
   abstract fun bind(entity: T)
 }

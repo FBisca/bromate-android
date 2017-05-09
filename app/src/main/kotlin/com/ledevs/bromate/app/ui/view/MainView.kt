@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.FrameLayout
 import com.ledevs.bromate.R
 import com.ledevs.bromate.app.contract.MainContract
+import com.ledevs.bromate.app.viewmodel.EntryViewModel
+import java.util.*
 
 class MainView @JvmOverloads constructor(
     context: Context,
@@ -20,5 +22,17 @@ class MainView @JvmOverloads constructor(
 
   override fun getContentView(): View {
     return this
+  }
+
+  override fun getCurrentMonth(): Date {
+    return Date()
+  }
+
+  override fun showEntryList(entries: List<EntryViewModel>) {
+
+  }
+
+  override fun showEntryLoadError() {
+
   }
 }

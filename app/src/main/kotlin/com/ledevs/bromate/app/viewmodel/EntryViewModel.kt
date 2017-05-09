@@ -1,6 +1,6 @@
 package com.ledevs.bromate.app.viewmodel
 
-import android.graphics.drawable.Drawable
+import android.support.annotation.DrawableRes
 import com.ledevs.bromate.app.formatter.Formatter
 import com.ledevs.bromate.data.model.Entry
 
@@ -26,7 +26,7 @@ sealed class EntryViewModel {
           entry.title,
           entry.description,
           formatter.format(entry.date, Formatter.FORMAT_HOUR_DESCRIPTION),
-          1,
+          null,
           null
       )
     }
@@ -41,8 +41,8 @@ sealed class EntryViewModel {
       val title: String,
       val description: String,
       val hour: String,
-      val type: Int,
-      val image: Drawable?
+      @DrawableRes val type: Int?,
+      @DrawableRes val image: Int?
   ) : EntryViewModel()
 
 }
