@@ -1,54 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
   <data/>
 
-  <LinearLayout
+  <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/item_margin"
-      android:layout_marginLeft="@dimen/item_margin"
-      android:layout_marginRight="@dimen/item_margin"
-      android:background="@drawable/border_white"
-      android:orientation="horizontal">
+      android:orientation="vertical"
+      android:background="@color/accent">
 
     <TextView
-        android:layout_width="0dp"
+        android:id="@+id/current_month_label"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="@dimen/item_margin"
-        android:layout_marginBottom="@dimen/item_margin"
-        android:layout_marginStart="@dimen/item_margin"
-        android:layout_marginLeft="@dimen/item_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="MONTHLY INSIGHTS"/>
+        android:padding="@dimen/screen_margin"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:text="Janeiro, 2017"/>
 
-    <View android:layout_width="0.5dp"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="@dimen/item_margin"
-          android:layout_marginRight="@dimen/item_margin"
-          android:background="@color/windowBackground"/>
-
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/month_tablayout"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="@dimen/item_margin"
-        android:layout_marginBottom="@dimen/item_margin"
-        android:layout_marginStart="@dimen/item_margin"
-        android:layout_marginLeft="@dimen/item_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:text="MARCH"/>
+        android:layout_width="match_parent"
+        android:layout_below="@+id/current_month_label"
+        app:tabTextColor="@color/month_selector_tab_text_color"
+        app:tabMode="scrollable"
+        app:tabBackground="@android:color/transparent"/>
 
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:scaleType="center"
-        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp"
-        tools:tint="@color/textColor"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignBottom="@+id/month_tablayout"
+        android:background="@drawable/shadow_up"/>
 
-  </LinearLayout>
+  </RelativeLayout>
+
+
 </layout>

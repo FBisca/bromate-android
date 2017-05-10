@@ -8,11 +8,15 @@
 
   <com.ledevs.bromate.app.ui.view.MonthSelectorView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/item_margin"
+      android:layout_marginLeft="@dimen/item_margin"
+      android:layout_marginRight="@dimen/item_margin"/>
 
   <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
       android:layout_marginLeft="@dimen/item_margin"
       android:layout_marginRight="@dimen/item_margin"
       android:layout_marginBottom="@dimen/item_margin">
@@ -22,11 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/border_white"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/shadow"/>
 
   </FrameLayout>
 

@@ -10,7 +10,7 @@ import com.ledevs.bromate.app.ui.adapters.EntryAdapter
 import com.ledevs.bromate.app.ui.adapters.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
 import com.ledevs.bromate.di.subcomponent.MainActivityComponent
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
@@ -61,5 +61,6 @@ class MainActivity : BaseActivity(), MainContract.View {
         .module(MainActivityComponent.MainActivityModule(this))
         .build()
         .injectMembers(this)
+
   }
 }
