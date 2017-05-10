@@ -27,6 +27,11 @@
         android:layout_height="match_parent"
         android:background="@drawable/border_white"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_down"/>
+
   </FrameLayout>
 
 </LinearLayout>

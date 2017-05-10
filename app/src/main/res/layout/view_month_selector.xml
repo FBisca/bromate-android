@@ -5,7 +5,7 @@
 
   <data/>
 
-  <RelativeLayout
+  <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
@@ -15,27 +15,48 @@
         android:id="@+id/current_month_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="?actionBarSize"
         android:padding="@dimen/screen_margin"
         android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:visibility="gone"
         tools:text="Janeiro, 2017"/>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/month_tablayout"
-        android:layout_height="wrap_content"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_below="@+id/current_month_label"
-        app:tabTextColor="@color/month_selector_tab_text_color"
-        app:tabMode="scrollable"
-        app:tabBackground="@android:color/transparent"/>
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_alignBottom="@+id/month_tablayout"
-        android:background="@drawable/shadow_up"/>
+      <Button
+          android:id="@+id/button_apply"
+          style="@style/Widget.AppCompat.Button.Borderless.Colored"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentEnd="true"
+          android:layout_alignParentRight="true"
+          android:drawableLeft="@drawable/ic_done_black_24dp"
+          android:drawableStart="@drawable/ic_done_black_24dp"
+          android:drawableTint="@android:color/white"
+          android:drawablePadding="@dimen/item_margin"
+          android:textColor="@android:color/white"
+          android:text="@string/apply"/>
 
-  </RelativeLayout>
+      <android.support.design.widget.TabLayout
+          android:id="@+id/month_tablayout"
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:layout_below="@+id/button_apply"
+          android:minHeight="?actionBarSize"
+          app:tabTextColor="@color/month_selector_tab_text_color"
+          app:tabMode="scrollable"
+          app:tabBackground="@android:color/transparent"/>
+
+
+
+    </RelativeLayout>
+
+  </FrameLayout>
 
 
 </layout>

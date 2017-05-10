@@ -9,7 +9,8 @@
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="wrap_content"
+      android:background="?selectableItemBackground">
 
     <FrameLayout
         android:id="@+id/entry_type_frame"
