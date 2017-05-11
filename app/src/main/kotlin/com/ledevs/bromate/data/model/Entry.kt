@@ -7,7 +7,8 @@ import java.util.Date
 data class Entry(
     val title: String,
     val description: String,
-    val value: Double,
+    val totalValue: Double,
+    val chargeBackValue: Double,
     val date: Date,
     val type: EntryType
 ) : Parcelable {
@@ -17,6 +18,7 @@ data class Entry(
       parcel.readString(),
       parcel.readString(),
       parcel.readDouble(),
+      parcel.readDouble(),
       Date(parcel.readLong()),
       parcel.readSerializable() as EntryType
   )
@@ -24,7 +26,8 @@ data class Entry(
   override fun writeToParcel(dest: Parcel, flags: Int) {
     dest.writeString(title)
     dest.writeString(description)
-    dest.writeDouble(value)
+    dest.writeDouble(totalValue)
+    dest.writeDouble(chargeBackValue)
     dest.writeLong(date.time)
     dest.writeSerializable(type)
   }

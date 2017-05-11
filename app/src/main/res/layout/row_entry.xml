@@ -9,8 +9,7 @@
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?selectableItemBackground">
+      android:layout_height="wrap_content">
 
     <FrameLayout
         android:id="@+id/entry_type_frame"
@@ -40,29 +39,51 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/screen_margin"
+        android:layout_below="@+id/entry_hour"
+        android:layout_marginRight="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/screen_margin"
         android:layout_toEndOf="@+id/entry_type_frame"
         android:layout_toRightOf="@+id/entry_type_frame"
         android:minHeight="48dp">
 
       <TextView
-          android:id="@+id/entry_value"
+          android:id="@+id/entry_chargeback_value"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true"
+          android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+          android:textColor="#689F38"
+          android:maxLength="16"
+          android:text="@{entry.chargeBackValue}"
+          tools:text="+ R$ 200.00"/>
+
+      <TextView
+          android:id="@+id/entry_total_value"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_alignParentLeft="true"
           android:layout_alignParentStart="true"
-          android:layout_toLeftOf="@+id/entry_hour"
-          android:layout_toStartOf="@id/entry_hour"
-          android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-          android:textColor="@color/colorAccent"
-          android:text="@{entry.value}"
+          android:gravity="center_vertical|end"
+          android:layout_alignRight="@+id/entry_chargeback_value"
+          android:layout_alignEnd="@+id/entry_chargeback_value"
+          android:layout_below="@+id/entry_chargeback_value"
+          android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+          android:textColor="#D32F2F"
+          android:text="@{entry.totalValue}"
           tools:text="- R$ 300.00"/>
 
       <TextView
           android:id="@+id/entry_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/entry_value"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentLeft="true"
+          android:layout_toLeftOf="@+id/entry_chargeback_value"
+          android:layout_toStartOf="@+id/entry_chargeback_value"
           android:textAppearance="@style/TextAppearance.AppCompat.Body2"
           android:text="@{entry.title}"
           tools:text="Mercado"/>
@@ -72,25 +93,30 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_below="@+id/entry_title"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true"
+          android:layout_toLeftOf="@+id/entry_chargeback_value"
+          android:layout_toStartOf="@+id/entry_chargeback_value"
           android:alpha="0.8"
           android:textAppearance="@style/TextAppearance.AppCompat.Body1"
           android:text="@{entry.description}"
-          tools:text="Sem descrição"/>
-
-      <TextView
-          android:id="@+id/entry_hour"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentEnd="true"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentTop="@+id/entry_value"
-          android:layout_gravity="end"
-          android:alpha="0.6"
-          android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-          android:text="@{entry.hour}"
-          tools:text="13:50"/>
+          tools:text="Uma descrição meio grande do produto"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/entry_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:layout_marginBottom="@dimen/item_margin"
+        android:layout_gravity="end"
+        android:alpha="0.6"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:text="@{entry.hour}"
+        tools:text="13:50"/>
 
   </RelativeLayout>
 

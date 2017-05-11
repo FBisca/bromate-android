@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable name="entry" type="com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryDateViewModel"/>
-    </data>
+  <data>
+    <variable name="entry" type="com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryDateViewModel"/>
+  </data>
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingLeft="@dimen/screen_margin"
-              android:paddingRight="@dimen/screen_margin"
-              android:paddingTop="@dimen/item_margin"
-              android:paddingBottom="@dimen/item_margin"
-              android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-              android:fontFamily="sans-serif-medium"
-              android:text="@{entry.date}"
-              tools:text="Segunda-feira, 13/04"/>
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="@dimen/screen_margin"
+      android:paddingRight="@dimen/screen_margin"
+      android:paddingTop="@dimen/item_margin"
+      android:paddingBottom="@dimen/item_margin"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+      android:fontFamily="sans-serif-medium"
+      android:text="@{entry.date}"
+      tools:text="Segunda-feira, 13/04"/>
 
 </layout>

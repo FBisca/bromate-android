@@ -1,6 +1,5 @@
 package com.ledevs.bromate.app.viewmodel
 
-import android.support.annotation.DrawableRes
 import com.ledevs.bromate.app.formatter.Formatter
 import com.ledevs.bromate.data.model.Entry
 
@@ -14,21 +13,10 @@ sealed class EntryViewModel {
             val (date, values) = it
 
             val header = EntryDateViewModel(date)
-            val items = values.map { createFrom(formatter, it) }
+            val items = values.map { EntryRowViewModel(formatter, it) }
 
             listOf(header, *items.toTypedArray())
           }
-    }
-
-    fun createFrom(formatter: Formatter, entry: Entry): EntryRowViewModel {
-      return EntryRowViewModel(
-          entry.value.toString(),
-          entry.title,
-          entry.description,
-          formatter.format(entry.date, Formatter.FORMAT_HOUR_DESCRIPTION),
-          null,
-          null
-      )
     }
   }
 
@@ -36,13 +24,15 @@ sealed class EntryViewModel {
       val date: String
   ) : EntryViewModel()
 
-  data class EntryRowViewModel(
-      val value: String,
-      val title: String,
-      val description: String,
-      val hour: String,
-      @DrawableRes val type: Int?,
-      @DrawableRes val image: Int?
-  ) : EntryViewModel()
+  class EntryRowViewModel(
+      private val formatter: Formatter,
+      private val entry: Entry
+  ) : EntryViewModel() {
+    fun getTitle() = entry.title
+    fun getDescription() = entry.description
+    fun getTotalValue() = "- ${formatter.formatCurrency(entry.totalValue)}"
+    fun getChargeBackValue() = "+ ${formatter.formatCurrency(entry.chargeBackValue)}"
+    fun getHour() = formatter.format(entry.date, Formatter.FORMAT_HOUR_DESCRIPTION)
+  }
 
 }

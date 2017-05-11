@@ -7,8 +7,10 @@ import com.ledevs.bromate.app.viewmodel.EntryViewModel
 
 class EntryAdapter : RecyclerView.Adapter<EntryViewHolder<*>>() {
 
-  val VIEW_TYPE_ROW = 1
-  val VIEW_TYPE_DATE = 2
+  companion object {
+    const val VIEW_TYPE_ROW = 1
+    const val VIEW_TYPE_DATE = 2
+  }
 
   val items = mutableListOf<EntryViewModel>()
 
