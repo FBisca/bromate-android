@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.ui.adapters.utils
+package com.ledevs.bromate.app.ui.list.utils
 
 import android.support.v7.util.DiffUtil
 

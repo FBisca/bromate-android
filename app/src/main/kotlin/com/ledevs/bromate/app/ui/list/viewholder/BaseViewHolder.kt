@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.ui.adapters.viewholder
+package com.ledevs.bromate.app.ui.list.viewholder
 
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView

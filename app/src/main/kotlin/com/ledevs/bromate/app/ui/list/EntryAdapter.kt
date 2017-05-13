@@ -1,8 +1,8 @@
-package com.ledevs.bromate.app.ui.adapters
+package com.ledevs.bromate.app.ui.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.ledevs.bromate.app.ui.adapters.viewholder.EntryViewHolder
+import com.ledevs.bromate.app.ui.list.viewholder.EntryViewHolder
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
 
 class EntryAdapter : RecyclerView.Adapter<EntryViewHolder<*>>() {

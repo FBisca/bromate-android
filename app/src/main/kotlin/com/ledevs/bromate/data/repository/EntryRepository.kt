@@ -5,5 +5,5 @@ import io.reactivex.Single
 import java.util.*
 
 interface EntryRepository {
-  fun listEntries(month: Date): Single<List<Entry>>
+  fun listOpenEntries(): Single<List<Entry>>
 }

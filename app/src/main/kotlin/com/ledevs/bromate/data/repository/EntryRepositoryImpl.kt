@@ -1,17 +1,16 @@
 package com.ledevs.bromate.data.repository
 
-import com.ledevs.bromate.app.formatter.Formatter
 import com.ledevs.bromate.data.model.Entry
 import com.ledevs.bromate.data.model.EntryType
 import com.ledevs.bromate.data.network.EntryApi
 import io.reactivex.Single
-import java.util.Date
+import java.util.*
 
 class EntryRepositoryImpl(
-    private val entryApi: EntryApi,
-    private val formatter: Formatter
+    private val entryApi: EntryApi
 ) : EntryRepository {
-  override fun listEntries(month: Date): Single<List<Entry>> {
+
+  override fun listOpenEntries(): Single<List<Entry>> {
     val today = Date()
     val yesterday = Date(today.time - 86400000)
     val twoDaysAgo = Date(yesterday.time - 86400000)
@@ -22,6 +21,6 @@ class EntryRepositoryImpl(
         Entry("Eletropaulo", "Conta de Energia de Abril", 140.0, 90.0, yesterday, EntryType.GROCERIES),
         Entry("Vivo", "Conta de Internet de Abril", 179.9, 120.0, twoDaysAgo, EntryType.GROCERIES)
     ))
-    //return entryApi.getEntries(formatter.format(month, Formatter.FORMAT_YEAR_MONTH))
+    //return entryApi.getEntries()
   }
 }
