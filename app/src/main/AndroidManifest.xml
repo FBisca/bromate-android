@@ -13,12 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.ledevs.bromate.app.ui.activities.EntryActivity">
+        <activity android:name=".app.ui.activities.HomeActivity"/>
+
+        <activity-alias android:name=".Launcher"
+                        android:targetActivity=".app.ui.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
+        </activity-alias>
     </application>
 
 </manifest>

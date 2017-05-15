@@ -53,6 +53,7 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
   compile "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
   compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+  compile 'de.hdodenhof:circleimageview:2.1.0'
 
   kapt "com.android.databinding:compiler:2.3.1"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"

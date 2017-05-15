@@ -1,6 +1,6 @@
 package com.ledevs.bromate.di
 
-import com.ledevs.bromate.app.ui.activities.BaseActivity
+import com.ledevs.bromate.app.ui.view.BaseView
 import dagger.MembersInjector
 import dagger.Module
 import dagger.Provides
@@ -9,20 +9,20 @@ import javax.inject.Scope
 @Scope
 annotation class ViewScope
 
-typealias ActivityInjectionBuilder = @JvmSuppressWildcards ActivityComponentBuilders<*, *>
+typealias InjectionBuilder = @JvmSuppressWildcards ComponentBuilders<*, *>
 
-interface ActivityComponent<T : BaseActivity> : MembersInjector<T>
+interface ViewComponent<T> : MembersInjector<T>
 
 @Module
-abstract class ActivityModule<out T: BaseActivity>(val activity: T) {
+abstract class ViewModule<out T: BaseView>(val view: T) {
   @ViewScope
   @Provides
   fun providesActivity(): T {
-    return activity
+    return view
   }
 }
 
-interface ActivityComponentBuilders<in M : ActivityModule<*>, C : ActivityComponent<*>> {
-  fun module(module: M) : ActivityComponentBuilders<M, C>
+interface ComponentBuilders<in M : ViewModule<*>, C : ViewComponent<*>> {
+  fun module(module: M) : ComponentBuilders<M, C>
   fun build(): C
 }
