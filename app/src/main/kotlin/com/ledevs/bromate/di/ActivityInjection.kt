@@ -17,7 +17,7 @@ interface ViewComponent<T> : MembersInjector<T>
 abstract class ViewModule<out T: BaseView>(val view: T) {
   @ViewScope
   @Provides
-  fun providesActivity(): T {
+  fun providesView(): T {
     return view
   }
 }

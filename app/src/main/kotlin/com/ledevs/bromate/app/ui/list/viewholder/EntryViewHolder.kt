@@ -1,30 +1,29 @@
 package com.ledevs.bromate.app.ui.list.viewholder
 
 import android.databinding.ViewDataBinding
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
+import com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryDateViewModel
+import com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryRowViewModel
 import com.ledevs.bromate.databinding.RowEntryBinding
 import com.ledevs.bromate.databinding.RowEntryDateBinding
 
-sealed class EntryViewHolder<out DB : ViewDataBinding>(
-    viewDataBinding: DB
-) : BaseViewHolder<EntryViewModel, DB>(viewDataBinding) {
+sealed class EntryViewHolder(
+    dataBinding: ViewDataBinding
+) : BaseViewHolder<EntryViewModel>(dataBinding) {
 
-  class EntryRowViewHolder(viewGroup: ViewGroup) : EntryViewHolder<RowEntryBinding>(
-      RowEntryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-  ) {
+  class EntryRowViewHolder(
+      val dataBinding: RowEntryBinding
+  ) : EntryViewHolder(dataBinding) {
     override fun bind(entity: EntryViewModel) {
-      viewDataBinding.entry = entity as EntryViewModel.EntryRowViewModel
+      dataBinding.entry = entity as EntryRowViewModel
     }
   }
 
-  class EntryDateViewHolder(viewGroup: ViewGroup) : EntryViewHolder<RowEntryDateBinding>(
-      RowEntryDateBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-  ) {
+  class EntryDateViewHolder(
+      val dataBinding: RowEntryDateBinding
+  ) : EntryViewHolder(dataBinding) {
     override fun bind(entity: EntryViewModel) {
-      viewDataBinding.entry = entity as EntryViewModel.EntryDateViewModel?
+      dataBinding.entry = entity as EntryDateViewModel
     }
-
   }
 }

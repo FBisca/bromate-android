@@ -3,7 +3,6 @@ package com.ledevs.bromate.app.contract
 import com.ledevs.bromate.app.presenter.BasePresenter
 import com.ledevs.bromate.app.ui.view.BaseView
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
-import java.util.Date
 
 object EntryContract {
   interface Presenter : BasePresenter<View>

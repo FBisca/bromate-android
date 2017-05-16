@@ -2,8 +2,10 @@ package com.ledevs.bromate.data.repository
 
 import com.ledevs.bromate.data.model.Entry
 import com.ledevs.bromate.data.model.EntryType
+import com.ledevs.bromate.data.model.UserBalance
 import com.ledevs.bromate.data.network.EntryApi
 import io.reactivex.Single
+import retrofit2.Retrofit
 import java.util.*
 
 class EntryRepositoryImpl(
@@ -22,5 +24,8 @@ class EntryRepositoryImpl(
         Entry("Vivo", "Conta de Internet de Abril", 179.9, 120.0, twoDaysAgo, EntryType.GROCERIES)
     ))
     //return entryApi.getEntries()
+  }
+
+  override fun listUsersBalance(): Single<List<UserBalance>> {
   }
 }

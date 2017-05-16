@@ -1,40 +1,38 @@
 package com.ledevs.bromate.app.ui.view
 
 import android.content.Context
-import android.support.v7.util.DiffUtil
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.ledevs.bromate.R
-import com.ledevs.bromate.app.contract.EntryContract
-import com.ledevs.bromate.app.ui.list.EntryAdapter
-import com.ledevs.bromate.app.ui.list.decorator.EntryItemDecorator
-import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
-import com.ledevs.bromate.app.viewmodel.EntryViewModel
-import com.ledevs.bromate.di.subcomponent.EntryComponent
+import com.ledevs.bromate.app.contract.ResumeContract
+import com.ledevs.bromate.app.ui.list.ResumeAdapter
+import com.ledevs.bromate.app.ui.list.decorator.ResumeItemDecorator
+import com.ledevs.bromate.di.subcomponent.ResumeComponent
+import com.ledevs.bromate.extensions.injectBuilder
 import javax.inject.Inject
 
 class ResumeView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attributeSet, defStyleAttr), BaseView {
+) : FrameLayout(context, attributeSet, defStyleAttr), ResumeContract.View {
 
-  private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
+  private val resumeList by lazy { findViewById(R.id.list_resume) as RecyclerView }
 
   @Inject
-  lateinit var presenter: EntryContract.Presenter
+  lateinit var presenter: ResumeContract.Presenter
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_resume, this)
     initInjection()
 
-    val adapter = EntryAdapter()
-    entryList.addItemDecoration(EntryItemDecorator(context))
-    entryList.layoutManager = LinearLayoutManager(context)
-    entryList.adapter = adapter
+    val adapter = ResumeAdapter()
+    resumeList.addItemDecoration(ResumeItemDecorator(context))
+    resumeList.layoutManager = LinearLayoutManager(context)
+    resumeList.adapter = adapter
   }
 
   override fun onAttachedToWindow() {
@@ -47,22 +45,10 @@ class ResumeView @JvmOverloads constructor(
     presenter.detachView()
   }
 
-  override fun showEntryList(entries: List<EntryViewModel>) {
-    val adapter = entryList.adapter as EntryAdapter
-    val diffResult = DiffUtil.calculateDiff(SimpleDiffCallback(adapter.items, entries))
-    adapter.items.clear()
-    adapter.items.addAll(entries)
-    diffResult.dispatchUpdatesTo(adapter)
-  }
-
-  override fun showEntryLoadError() {
-  }
-
   private fun initInjection() {
-    injectBuilder<EntryComponent.Builder>()
-        .module(EntryComponent.EntryModule(this))
+    injectBuilder<ResumeComponent.Builder>()
+        .module(ResumeComponent.ResumeModule(this))
         .build()
         .injectMembers(this)
-
   }
 }

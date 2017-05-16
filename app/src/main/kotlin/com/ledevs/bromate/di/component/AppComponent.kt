@@ -13,7 +13,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         ParserModule::class,
         RepositoryModule::class,
-        ActivityBindModule::class
+        ViewBindModule::class
     )
 )
 interface AppComponent : MembersInjector<App>

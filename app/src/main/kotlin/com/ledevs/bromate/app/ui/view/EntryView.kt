@@ -14,13 +14,14 @@ import com.ledevs.bromate.app.ui.list.decorator.EntryItemDecorator
 import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
 import com.ledevs.bromate.di.subcomponent.EntryComponent
+import com.ledevs.bromate.extensions.injectBuilder
 import javax.inject.Inject
 
 class EntryView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attributeSet, defStyleAttr), BaseView, EntryContract.View {
+) : FrameLayout(context, attributeSet, defStyleAttr), EntryContract.View {
 
   private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
 
