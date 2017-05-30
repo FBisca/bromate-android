@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.ui.activities
+package com.ledevs.bromate.app.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 

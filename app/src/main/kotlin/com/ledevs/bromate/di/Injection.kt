@@ -1,13 +1,11 @@
 package com.ledevs.bromate.di
 
 import android.arch.lifecycle.ViewModel
-import javax.inject.Scope
-
-
 
 typealias ViewModelBuilder = @JvmSuppressWildcards ViewModelComponentBuilder<@JvmWildcard ViewModelComponent<*>>
 
 interface ViewModelComponent<out T : ViewModel> {
+  @ViewModelScope
   fun viewModel(): T
 }
 

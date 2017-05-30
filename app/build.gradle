@@ -13,7 +13,7 @@ android {
     targetSdkVersion 25
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.ledevs.bromate.AppTestRunner"
 
     vectorDrawables.useSupportLibrary = true
   }
@@ -27,6 +27,7 @@ android {
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
+    debug.java.srcDirs += 'src/debug/kotlin'
   }
 
   dataBinding {
@@ -37,6 +38,7 @@ android {
 allOpen {
   annotation("dagger.Module")
   annotation("dagger.Provides")
+  annotation("android.support.annotation.VisibleForTesting")
 }
 
 dependencies {
@@ -61,6 +63,8 @@ dependencies {
   kapt "com.android.databinding:compiler:2.3.1"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+  androidTestCompile "org.mockito:mockito-android:$mockito_version"
+  androidTestCompile('org.mockito:mockito-core:2.8.9')
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })

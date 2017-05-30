@@ -1,13 +1,13 @@
-package com.ledevs.bromate.app.ui.activities
+package com.ledevs.bromate.app.ui.activity
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewCompat
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v4.view.animation.LinearOutSlowInInterpolator
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import com.ledevs.bromate.R
@@ -16,7 +16,6 @@ import com.ledevs.bromate.app.ui.view.ResumeView
 
 class HomeActivity : BaseActivity() {
 
-  private val appBar by lazy { findViewById(R.id.appBar) as AppBarLayout }
   private val toolbar by lazy { findViewById(R.id.toolbar) as Toolbar }
   private val contentPanel by lazy { findViewById(R.id.contentPanel) as FrameLayout }
   private val bottomNavigation by lazy { findViewById(R.id.bottomNavigation) as BottomNavigationView }
@@ -34,6 +33,7 @@ class HomeActivity : BaseActivity() {
   private fun initActivity() {
     setSupportActionBar(toolbar)
 
+    bottomNavigation.setOnNavigationItemSelectedListener { navigationItemSelected(it) }
     replaceView(entryView)
   }
 
@@ -47,6 +47,15 @@ class HomeActivity : BaseActivity() {
         animateViewInclude(newView)
       }
     }
+  }
+
+  private fun navigationItemSelected(menuItem: MenuItem): Boolean {
+    when (menuItem.itemId) {
+      R.id.menu_entries -> replaceView(entryView)
+      R.id.menu_home -> replaceView(resumeView)
+    }
+
+    return true
   }
 
   private inline fun animateViewRemoval(view: View, crossinline afterAction: () -> Unit) {
@@ -63,6 +72,9 @@ class HomeActivity : BaseActivity() {
   }
 
   private fun animateViewInclude(view: View) {
+    ViewCompat.setAlpha(view, 0f)
+    contentPanel.addView(view)
+
     ViewCompat.animate(view)
         .alpha(1f)
         .setListener(ViewPropertyAnimatorListenerAdapter())

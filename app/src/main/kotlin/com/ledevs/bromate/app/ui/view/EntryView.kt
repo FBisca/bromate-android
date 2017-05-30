@@ -23,14 +23,14 @@ class EntryView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
-  private lateinit var viewModel: EntryViewModel
+  private val viewModel: EntryViewModel
 
   private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
   private var subscription: Disposable = Disposables.empty()
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_entry, this)
-    initInjection(context)
+    viewModel = context.provideViewModel(javaClass)
 
     val adapter = EntryAdapter()
     entryList.addItemDecoration(EntryItemDecorator(context))
@@ -64,9 +64,5 @@ class EntryView @JvmOverloads constructor(
   }
 
   fun showEntryLoadError() {
-  }
-
-  private fun initInjection(context: Context) {
-    viewModel = context.provideViewModel(javaClass)
   }
 }

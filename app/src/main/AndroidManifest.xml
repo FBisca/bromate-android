@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".app.ui.activities.HomeActivity"/>
+        <activity android:name=".app.ui.activity.HomeActivity"/>
 
         <activity-alias android:name=".Launcher"
-                        android:targetActivity=".app.ui.activities.HomeActivity">
+                        android:targetActivity=".app.ui.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
