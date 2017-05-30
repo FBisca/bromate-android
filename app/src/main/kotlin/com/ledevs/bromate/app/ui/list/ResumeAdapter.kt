@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder
 import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeHeaderViewHolder
 import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeUserViewHolder
-import com.ledevs.bromate.app.viewmodel.ResumeViewModel
-import com.ledevs.bromate.app.viewmodel.ResumeViewModel.ResumeHeaderViewModel
-import com.ledevs.bromate.app.viewmodel.ResumeViewModel.ResumeUserViewModel
+import com.ledevs.bromate.app.ui.list.model.ResumeListModel
+import com.ledevs.bromate.app.ui.list.model.ResumeListModel.ResumeHeaderListModel
+import com.ledevs.bromate.app.ui.list.model.ResumeListModel.ResumeUserListModel
 import com.ledevs.bromate.databinding.RowResumeBinding
 import com.ledevs.bromate.databinding.RowResumeUserBinding
 import com.ledevs.bromate.extensions.layoutInflater
@@ -19,7 +19,7 @@ class ResumeAdapter : RecyclerView.Adapter<ResumeViewHolder>() {
     const val VIEW_TYPE_USER = 2
   }
 
-  val items = mutableListOf<ResumeViewModel>()
+  val items = mutableListOf<ResumeListModel>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResumeViewHolder {
     val inflater = parent.layoutInflater()
@@ -39,8 +39,8 @@ class ResumeAdapter : RecyclerView.Adapter<ResumeViewHolder>() {
 
   override fun getItemViewType(position: Int): Int {
     return when (items[position]) {
-      is ResumeHeaderViewModel -> VIEW_TYPE_HEADER
-      is ResumeUserViewModel -> VIEW_TYPE_USER
+      is ResumeHeaderListModel -> VIEW_TYPE_HEADER
+      is ResumeUserListModel -> VIEW_TYPE_USER
     }
   }
 }

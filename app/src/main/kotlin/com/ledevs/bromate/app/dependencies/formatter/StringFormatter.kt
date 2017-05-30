@@ -1,8 +1,8 @@
-package com.ledevs.bromate.app.formatter
+package com.ledevs.bromate.app.dependencies.formatter
 
 import java.util.Date
 
-interface Formatter {
+interface StringFormatter {
   companion object {
     const val FORMAT_YEAR_MONTH = "yyyy-MM"
     const val FORMAT_DAY_DESCRIPTION = "EEEE, dd"

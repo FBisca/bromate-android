@@ -4,13 +4,14 @@ import android.content.Context
 import android.os.Build
 import dagger.Module
 import dagger.Provides
-import java.util.*
+import java.util.Locale
 import javax.inject.Singleton
 
 @Module
-class AndroidModule(
+class AppModule(
     private val context: Context
 ) {
+
   @Singleton
   @Provides
   fun context() = this.context

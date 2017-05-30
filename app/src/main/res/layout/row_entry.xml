@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
   <data>
-    <variable name="entry" type="com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryRowViewModel"/>
+    <variable name="entry" type="com.ledevs.bromate.app.ui.list.model.EntryListModel.EntryRowListModel"/>
   </data>
 
   <RelativeLayout

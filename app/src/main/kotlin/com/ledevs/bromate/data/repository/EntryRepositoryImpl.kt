@@ -5,8 +5,7 @@ import com.ledevs.bromate.data.model.EntryType
 import com.ledevs.bromate.data.model.UserBalance
 import com.ledevs.bromate.data.network.EntryApi
 import io.reactivex.Single
-import retrofit2.Retrofit
-import java.util.*
+import java.util.Date
 
 class EntryRepositoryImpl(
     private val entryApi: EntryApi
@@ -27,5 +26,6 @@ class EntryRepositoryImpl(
   }
 
   override fun listUsersBalance(): Single<List<UserBalance>> {
+    return Single.error(RuntimeException())
   }
 }

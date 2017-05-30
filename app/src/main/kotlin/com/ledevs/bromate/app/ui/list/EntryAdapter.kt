@@ -1,15 +1,13 @@
 package com.ledevs.bromate.app.ui.list
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.ledevs.bromate.R
+import com.ledevs.bromate.app.ui.list.model.EntryListModel
+import com.ledevs.bromate.app.ui.list.model.EntryListModel.EntryDateListModel
+import com.ledevs.bromate.app.ui.list.model.EntryListModel.EntryRowListModel
 import com.ledevs.bromate.app.ui.list.viewholder.EntryViewHolder
 import com.ledevs.bromate.app.ui.list.viewholder.EntryViewHolder.EntryDateViewHolder
 import com.ledevs.bromate.app.ui.list.viewholder.EntryViewHolder.EntryRowViewHolder
-import com.ledevs.bromate.app.viewmodel.EntryViewModel
-import com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryDateViewModel
-import com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryRowViewModel
 import com.ledevs.bromate.databinding.RowEntryBinding
 import com.ledevs.bromate.databinding.RowEntryDateBinding
 import com.ledevs.bromate.extensions.layoutInflater
@@ -21,7 +19,7 @@ class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
     const val VIEW_TYPE_DATE = 2
   }
 
-  val items = mutableListOf<EntryViewModel>()
+  val items = mutableListOf<EntryListModel>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder {
     val inflater = parent.layoutInflater()
@@ -41,8 +39,8 @@ class EntryAdapter : RecyclerView.Adapter<EntryViewHolder>() {
 
   override fun getItemViewType(position: Int): Int {
     return when (items[position]) {
-      is EntryRowViewModel -> VIEW_TYPE_ROW
-      is EntryDateViewModel -> VIEW_TYPE_DATE
+      is EntryRowListModel -> VIEW_TYPE_ROW
+      is EntryDateListModel -> VIEW_TYPE_DATE
     }
   }
 }

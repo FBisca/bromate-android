@@ -8,29 +8,29 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.ledevs.bromate.R
-import com.ledevs.bromate.app.contract.EntryContract
 import com.ledevs.bromate.app.ui.list.EntryAdapter
 import com.ledevs.bromate.app.ui.list.decorator.EntryItemDecorator
+import com.ledevs.bromate.app.ui.list.model.EntryListModel
 import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
-import com.ledevs.bromate.di.subcomponent.EntryComponent
-import com.ledevs.bromate.extensions.injectBuilder
-import javax.inject.Inject
+import com.ledevs.bromate.extensions.provideViewModel
+import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.Disposables
 
 class EntryView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attributeSet, defStyleAttr), EntryContract.View {
+) : FrameLayout(context, attributeSet, defStyleAttr) {
+
+  private lateinit var viewModel: EntryViewModel
 
   private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
-
-  @Inject
-  lateinit var presenter: EntryContract.Presenter
+  private var subscription: Disposable = Disposables.empty()
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_entry, this)
-    initInjection()
+    initInjection(context)
 
     val adapter = EntryAdapter()
     entryList.addItemDecoration(EntryItemDecorator(context))
@@ -40,15 +40,22 @@ class EntryView @JvmOverloads constructor(
 
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
-    presenter.attachView(this)
+    getEntries()
+  }
+
+  private fun getEntries() {
+    subscription = viewModel.getEntries().subscribe(
+        { showEntryList(it) },
+        { showEntryLoadError() }
+    )
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    presenter.detachView()
+    subscription.dispose()
   }
 
-  override fun showEntryList(entries: List<EntryViewModel>) {
+  fun showEntryList(entries: List<EntryListModel>) {
     val adapter = entryList.adapter as EntryAdapter
     val diffResult = DiffUtil.calculateDiff(SimpleDiffCallback(adapter.items, entries))
     adapter.items.clear()
@@ -56,14 +63,10 @@ class EntryView @JvmOverloads constructor(
     diffResult.dispatchUpdatesTo(adapter)
   }
 
-  override fun showEntryLoadError() {
+  fun showEntryLoadError() {
   }
 
-  private fun initInjection() {
-    injectBuilder<EntryComponent.Builder>()
-        .module(EntryComponent.EntryModule(this))
-        .build()
-        .injectMembers(this)
-
+  private fun initInjection(context: Context) {
+    viewModel = context.provideViewModel(javaClass)
   }
 }

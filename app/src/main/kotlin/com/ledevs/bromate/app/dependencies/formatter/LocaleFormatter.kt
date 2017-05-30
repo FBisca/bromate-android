@@ -1,11 +1,11 @@
-package com.ledevs.bromate.app.formatter
+package com.ledevs.bromate.app.dependencies.formatter
 
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class LocaleFormatter(private val locale: Locale) : Formatter {
+class LocaleFormatter(private val locale: Locale) : StringFormatter {
 
   private val currencyFormater = NumberFormat.getCurrencyInstance(locale)
 

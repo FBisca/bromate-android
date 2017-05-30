@@ -1,38 +1,34 @@
 package com.ledevs.bromate.app.viewmodel
 
-import com.ledevs.bromate.app.formatter.Formatter
-import com.ledevs.bromate.data.model.Entry
+import android.arch.lifecycle.ViewModel
+import com.ledevs.bromate.app.dependencies.formatter.StringFormatter
+import com.ledevs.bromate.app.dependencies.scheduler.ThreadSchedulers
+import com.ledevs.bromate.app.ui.list.model.EntryListModel
+import com.ledevs.bromate.data.repository.EntryRepository
+import io.reactivex.Single
+import javax.inject.Inject
 
-sealed class EntryViewModel {
+class EntryViewModel @Inject constructor(
+    private val entryRepository: EntryRepository,
+    private val formatter: StringFormatter,
+    private val schedulers: ThreadSchedulers
+) : ViewModel() {
 
-  companion object {
-    fun createFrom(formatter: Formatter, entries: List<Entry>): List<EntryViewModel> {
-      return entries
-          .groupBy { formatter.format(it.date, Formatter.FORMAT_DAY_DESCRIPTION) }
-          .flatMap {
-            val (date, values) = it
+  private var entries: List<EntryListModel> = emptyList()
 
-            val header = EntryDateViewModel(date)
-            val items = values.map { EntryRowViewModel(formatter, it) }
-
-            listOf(header, *items.toTypedArray())
-          }
+  fun getEntries(): Single<List<EntryListModel>> {
+    return when {
+      entries.isNotEmpty() -> Single.just(entries)
+      else -> requestEntries()
     }
   }
 
-  data class EntryDateViewModel(
-      val date: String
-  ) : EntryViewModel()
-
-  class EntryRowViewModel(
-      private val formatter: Formatter,
-      private val entry: Entry
-  ) : EntryViewModel() {
-    fun getTitle() = entry.title
-    fun getDescription() = entry.description
-    fun getTotalValue() = "- ${formatter.formatCurrency(entry.totalValue)}"
-    fun getChargeBackValue() = "+ ${formatter.formatCurrency(entry.chargeBackValue)}"
-    fun getHour() = formatter.format(entry.date, Formatter.FORMAT_HOUR_DESCRIPTION)
+  private fun requestEntries(): Single<List<EntryListModel>> {
+    return entryRepository.listOpenEntries()
+        .map { EntryListModel.createFrom(formatter, it) }
+        .doAfterSuccess { entries = it }
+        .subscribeOn(schedulers.ioThread())
+        .observeOn(schedulers.mainThread())
   }
 
 }

@@ -7,10 +7,13 @@ buildscript {
   ext.constraint_layout_version = "1.0.1"
   ext.rxjava2_version = "2.0.9"
   ext.retrofit2_version = "2.2.0"
+  ext.arch_version = "1.0.0-alpha1"
 
   repositories {
     jcenter()
+    maven { url 'https://maven.google.com' }
   }
+
   dependencies {
     classpath 'com.android.tools.build:gradle:2.3.2'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -21,6 +24,7 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+    maven { url 'https://maven.google.com' }
   }
 }
 

@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.formatter
+package com.ledevs.bromate.app.dependencies.formatter
 
 import junit.framework.Assert.assertEquals
 import org.junit.Test
