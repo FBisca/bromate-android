@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data/>
-    
+    <data>
+        <variable name="resume" type="com.ledevs.bromate.app.ui.list.model.ResumeListModel.ResumeHeaderListModel"/>
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +31,7 @@
             android:layout_toRightOf="@+id/image_logo"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
+            android:text="@{resume.valueToReceive}"
             tools:text="R$ 1.200,00"/>
 
         <TextView
@@ -53,6 +56,7 @@
             android:layout_toRightOf="@+id/image_logo"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
+            android:text="@{resume.valueOwned}"
             tools:text="R$ 400,00"/>
 
         <TextView

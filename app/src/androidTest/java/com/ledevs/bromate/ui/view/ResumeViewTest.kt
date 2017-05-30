@@ -9,9 +9,9 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.runner.AndroidJUnit4
 import com.ledevs.bromate.R
 import com.ledevs.bromate.TestApp
-import com.ledevs.bromate.app.ui.view.EntryView
-import com.ledevs.bromate.app.viewmodel.EntryViewModel
-import com.ledevs.bromate.di.component.EntryComponent
+import com.ledevs.bromate.app.ui.view.ResumeView
+import com.ledevs.bromate.app.viewmodel.ResumeViewModel
+import com.ledevs.bromate.di.component.ResumeComponent
 import com.ledevs.bromate.test.ListModelFabricator
 import com.ledevs.bromate.utils.RecyclerViewMatcher
 import com.ledevs.bromate.utils.ViewRuleTest
@@ -26,17 +26,17 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations.initMocks
 
 @RunWith(AndroidJUnit4::class)
-class EntryViewTest {
+class ResumeViewTest {
 
   @Rule
   @JvmField
-  var viewRule = ViewRuleTest(EntryView::class.java, attachOnActivityLaunch = false)
+  var viewRule = ViewRuleTest(ResumeView::class.java, attachOnActivityLaunch = false)
 
   @Mock
-  lateinit var component: EntryComponent
+  lateinit var component: ResumeComponent
 
   @Mock
-  lateinit var viewModel: EntryViewModel
+  lateinit var viewModel: ResumeViewModel
 
   @Before
   fun setUp() {
@@ -44,7 +44,7 @@ class EntryViewTest {
 
     `when`(component.viewModel()).thenReturn(viewModel)
     val testApp = InstrumentationRegistry.getTargetContext().applicationContext as TestApp
-    testApp.addStubViewModelComponent(EntryView::class.java, component)
+    testApp.addStubViewModelComponent(ResumeView::class.java, component)
   }
 
   @After
@@ -55,23 +55,22 @@ class EntryViewTest {
 
   @Test
   fun testListDisplayCorrectly() {
-    val dateHeader = ListModelFabricator.entryDateModel()
-    val rowEntry = ListModelFabricator.entryRowModel()
+    val header = ListModelFabricator.resumeHeaderModel()
+    val user = ListModelFabricator.resumeUserModel()
 
-    val list = listOf(dateHeader, rowEntry)
+    val list = listOf(header, user)
 
-    `when`(viewModel.getEntries()).thenReturn(Single.just(list))
+    `when`(viewModel.getResume()).thenReturn(Single.just(list))
 
     viewRule.attachView()
 
     onView(listMatcher(R.id.entry_list).atPosition(0))
-        .check(matches(withText(dateHeader.date)))
+        .check(matches(hasDescendant(withText(header.valueOwned))))
+        .check(matches(hasDescendant(withText(header.valueToReceive))))
 
     onView(listMatcher(R.id.entry_list).atPosition(1))
-        .check(matches(hasDescendant(withText(rowEntry.title))))
-        .check(matches(hasDescendant(withText(rowEntry.description))))
-        .check(matches(hasDescendant(withText(rowEntry.chargeBackValue))))
-        .check(matches(hasDescendant(withText(rowEntry.totalValue))))
+        .check(matches(hasDescendant(withText(user.userName))))
+        .check(matches(hasDescendant(withText(user.balance))))
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {

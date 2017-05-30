@@ -5,8 +5,6 @@ import android.view.View
 
 class ViewActivity : AppCompatActivity() {
   fun bindView(view: View) {
-    runOnUiThread {
-      setContentView(view)
-    }
+    setContentView(view)
   }
 }

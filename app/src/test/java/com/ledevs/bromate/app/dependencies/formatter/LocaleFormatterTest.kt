@@ -2,9 +2,11 @@ package com.ledevs.bromate.app.dependencies.formatter
 
 import junit.framework.Assert.assertEquals
 import org.junit.Test
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class LocaleFormatterTest {
+
   @Test
   fun `test_simple_date_format`() {
     val formatter = LocaleFormatter(Locale.ENGLISH)

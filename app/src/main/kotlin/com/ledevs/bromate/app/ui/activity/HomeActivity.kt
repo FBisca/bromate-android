@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPropertyAnimatorListenerAdapter
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v4.view.animation.LinearOutSlowInInterpolator
 import android.support.v7.widget.Toolbar
-import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import com.ledevs.bromate.R
@@ -28,13 +27,21 @@ class HomeActivity : BaseActivity() {
     setContentView(R.layout.activity_home)
 
     initActivity()
+    initViews(savedInstanceState)
   }
 
   private fun initActivity() {
     setSupportActionBar(toolbar)
 
-    bottomNavigation.setOnNavigationItemSelectedListener { navigationItemSelected(it) }
-    replaceView(entryView)
+    bottomNavigation.setOnNavigationItemSelectedListener { navigationItemSelected(it.itemId) }
+  }
+
+  private fun initViews(savedInstanceState: Bundle?) {
+    if (savedInstanceState == null) {
+      replaceView(resumeView)
+    } else {
+      navigationItemSelected(bottomNavigation.selectedItemId)
+    }
   }
 
   private fun replaceView(newView: View) {
@@ -49,8 +56,8 @@ class HomeActivity : BaseActivity() {
     }
   }
 
-  private fun navigationItemSelected(menuItem: MenuItem): Boolean {
-    when (menuItem.itemId) {
+  private fun navigationItemSelected(itemId: Int): Boolean {
+    when (itemId) {
       R.id.menu_entries -> replaceView(entryView)
       R.id.menu_home -> replaceView(resumeView)
     }

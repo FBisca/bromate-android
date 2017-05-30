@@ -13,7 +13,7 @@ sealed class ResumeViewHolder(
       val dataBinding: RowResumeBinding
   ) : ResumeViewHolder(dataBinding) {
     override fun bind(entity: ResumeListModel) {
-
+      dataBinding.resume = entity as ResumeListModel.ResumeHeaderListModel
     }
   }
 

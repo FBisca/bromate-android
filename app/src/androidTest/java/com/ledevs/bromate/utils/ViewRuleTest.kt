@@ -1,4 +1,4 @@
-package com.ledevs.bromate
+package com.ledevs.bromate.utils
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -49,8 +49,8 @@ class ViewRuleTest<in T: View>(
     }
 
     fun turnIdle() {
-      callback?.onTransitionToIdle()
       idle = true
+      callback?.onTransitionToIdle()
     }
   }
 

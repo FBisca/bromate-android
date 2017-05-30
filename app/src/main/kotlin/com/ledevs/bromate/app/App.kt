@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 @VisibleForTesting
 class App : Application() {
-
   @Inject
   lateinit var viewModelBuilders: Map<Class<*>, ViewModelBuilder>
 
@@ -31,7 +30,7 @@ class App : Application() {
 
   fun provideBuilder(clazz: Class<*>): ViewModelComponent<*> {
     val component =  viewModelBuilders[clazz]
-        ?: throw IllegalArgumentException("${clazz.simpleName} not have builder")
+        ?: throw IllegalArgumentException("${clazz.simpleName} doesn't have builder")
     return component.build()
   }
 }
