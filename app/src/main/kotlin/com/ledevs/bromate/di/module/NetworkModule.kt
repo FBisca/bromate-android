@@ -1,6 +1,7 @@
 package com.ledevs.bromate.di.module
 
 import com.ledevs.bromate.data.network.EntryApi
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -13,11 +14,11 @@ import javax.inject.Singleton
 class NetworkModule {
   @Singleton
   @Provides
-  fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
+  fun providesRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
     return Retrofit.Builder()
         .baseUrl("http://www.google.com/")
         .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
   }

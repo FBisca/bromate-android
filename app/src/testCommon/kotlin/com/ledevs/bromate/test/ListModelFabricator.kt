@@ -22,7 +22,10 @@ object ListModelFabricator {
       description,
       totalValue,
       chargeBackValue,
-      hour
+      hour,
+      null,
+      1,
+      1
   )
 
   fun resumeHeaderModel(
@@ -35,8 +38,8 @@ object ListModelFabricator {
 
   fun resumeUserModel(
       userName: String = "John Doe",
-      balance: String = "$1.100.00",
-      userImageUrl: String = "http://www.google.com",
+      balance: String = "-$1.100.00",
+      userImageUrl: String = "http://68.media.tumblr.com/avatar_72f36b0f112e_128.png",
       negativeValue: Boolean = true
   ) = ResumeListModel.ResumeUserListModel(
       userName,

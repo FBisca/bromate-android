@@ -1,5 +1,8 @@
 package com.ledevs.bromate.app.ui.list.model
 
+import android.graphics.drawable.Drawable
+import android.support.annotation.ColorRes
+
 sealed class EntryListModel {
 
   data class EntryDateListModel(
@@ -11,7 +14,10 @@ sealed class EntryListModel {
       val description: String,
       val totalValue: String,
       val chargeBackValue: String,
-      val hour: String
+      val hour: String,
+      val icon: Drawable?,
+      @ColorRes val iconColor: Int,
+      @ColorRes val iconPortraitColor: Int
   ) : EntryListModel()
 
 }

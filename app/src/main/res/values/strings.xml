@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Bromate</string>
+  <string name="app_name">Bromate</string>
   <string name="apply">Apply</string>
-    <string name="home">Home</string>
-    <string name="entries">Entries</string>
+  <string name="home">Home</string>
+  <string name="entries">Entries</string>
+  <string name="value_to_receive">Value to receive</string>
+  <string name="user_value_to_receive">Value owned to you by this user</string>
+  <string name="value_owned">Value owned</string>
+  <string name="user_value_owned">Value you own to this user</string>
+  <string name="try_again">Try Again</string>
 </resources>

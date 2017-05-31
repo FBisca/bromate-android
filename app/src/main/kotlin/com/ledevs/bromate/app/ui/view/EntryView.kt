@@ -64,5 +64,6 @@ class EntryView @JvmOverloads constructor(
   }
 
   fun showEntryLoadError() {
+
   }
 }

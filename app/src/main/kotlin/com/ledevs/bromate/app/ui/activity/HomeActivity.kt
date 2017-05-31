@@ -15,6 +15,10 @@ import com.ledevs.bromate.app.ui.view.ResumeView
 
 class HomeActivity : BaseActivity() {
 
+  companion object {
+    const val STATE_NAVIGATION_ITEM_ID = "state_item_id"
+  }
+
   private val toolbar by lazy { findViewById(R.id.toolbar) as Toolbar }
   private val contentPanel by lazy { findViewById(R.id.contentPanel) as FrameLayout }
   private val bottomNavigation by lazy { findViewById(R.id.bottomNavigation) as BottomNavigationView }
@@ -30,6 +34,11 @@ class HomeActivity : BaseActivity() {
     initViews(savedInstanceState)
   }
 
+  override fun onSaveInstanceState(outState: Bundle?) {
+    super.onSaveInstanceState(outState)
+    outState?.putInt(STATE_NAVIGATION_ITEM_ID, bottomNavigation.selectedItemId)
+  }
+
   private fun initActivity() {
     setSupportActionBar(toolbar)
 
@@ -40,7 +49,7 @@ class HomeActivity : BaseActivity() {
     if (savedInstanceState == null) {
       replaceView(resumeView)
     } else {
-      navigationItemSelected(bottomNavigation.selectedItemId)
+      navigationItemSelected(savedInstanceState.getInt(STATE_NAVIGATION_ITEM_ID))
     }
   }
 

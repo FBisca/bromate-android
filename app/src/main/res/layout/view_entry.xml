@@ -12,4 +12,8 @@
       layout="@layout/include_error"
       android:visibility="gone"/>
 
+  <include
+      layout="@layout/include_loading"
+      android:visibility="gone"/>
+
 </merge>

@@ -1,12 +1,12 @@
 package com.ledevs.bromate.app.ui.list.model
 
 sealed class ResumeListModel {
-  class ResumeHeaderListModel(
+  data class ResumeHeaderListModel(
       val valueToReceive: String,
       val valueOwned: String
   ) : ResumeListModel()
 
-  class ResumeUserListModel(
+  data class ResumeUserListModel(
       val userName: String,
       val balance: String,
       val userImageUrl: String,

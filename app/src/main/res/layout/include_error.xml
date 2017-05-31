@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/windowBackground"
@@ -11,6 +12,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/item_margin"
+      android:background="@android:color/white"
       app:cardCornerRadius="5dp"
       app:cardElevation="5dp"
       app:cardUseCompatPadding="true"
@@ -35,7 +37,7 @@
           android:layout_gravity="center"
           android:layout_marginTop="@dimen/screen_margin"
           android:textAppearance="@style/TextAppearance.AppCompat.Title"
-          android:text="Error while loading list"/>
+          tools:text="Error while loading list"/>
 
       <TextView
           android:layout_width="wrap_content"
@@ -43,14 +45,14 @@
           android:layout_gravity="center"
           android:gravity="center"
           android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-          android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus."/>
+          tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus."/>
 
       <Button
           style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="end"
-          android:text="Try Again"/>
+          android:text="@string/try_again"/>
     </LinearLayout>
 
 

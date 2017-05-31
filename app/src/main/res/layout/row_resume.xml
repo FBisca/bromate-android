@@ -44,7 +44,7 @@
             android:alpha="0.85"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@android:color/white"
-            tools:text="Value to receive"/>
+            android:text="@string/value_to_receive"/>
 
         <TextView
             android:id="@+id/total_to_pay_value"
@@ -69,7 +69,7 @@
             android:alpha="0.85"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@android:color/white"
-            tools:text="Value owned"/>
+            android:text="@string/value_owned"/>
 
     </RelativeLayout>
 </layout>

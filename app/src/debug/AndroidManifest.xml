@@ -4,7 +4,7 @@
           package="com.ledevs.bromate">
 
     <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.ViewActivity"/>
+        <activity android:name=".ui.activity.ViewActivity" android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

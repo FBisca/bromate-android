@@ -7,13 +7,17 @@ import java.util.Locale
 
 class LocaleFormatter(private val locale: Locale) : StringFormatter {
 
-  private val currencyFormater = NumberFormat.getCurrencyInstance(locale)
+  private val currencyFormatter = NumberFormat.getCurrencyInstance(locale)
 
   override fun format(date: Date, format: String): String {
     return SimpleDateFormat(format, locale).format(date)
   }
 
   override fun formatCurrency(value: Double): String {
-    return currencyFormater.format(value)
+    return currencyFormatter.format(value)
+  }
+
+  override fun parse(dateString: String, format: String): Date {
+    return SimpleDateFormat(format, locale).parse(dateString)
   }
 }

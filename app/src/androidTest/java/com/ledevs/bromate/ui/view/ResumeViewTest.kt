@@ -64,13 +64,15 @@ class ResumeViewTest {
 
     viewRule.attachView()
 
-    onView(listMatcher(R.id.entry_list).atPosition(0))
+    onView(listMatcher(R.id.list_resume).atPosition(0))
         .check(matches(hasDescendant(withText(header.valueOwned))))
         .check(matches(hasDescendant(withText(header.valueToReceive))))
 
-    onView(listMatcher(R.id.entry_list).atPosition(1))
+    onView(listMatcher(R.id.list_resume).atPosition(1))
         .check(matches(hasDescendant(withText(user.userName))))
         .check(matches(hasDescendant(withText(user.balance))))
+
+    Thread.sleep(10000)
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {

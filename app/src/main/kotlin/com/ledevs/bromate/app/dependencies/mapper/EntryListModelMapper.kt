@@ -1,0 +1,61 @@
+package com.ledevs.bromate.app.dependencies.mapper
+
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
+import com.ledevs.bromate.R
+import com.ledevs.bromate.app.dependencies.formatter.StringFormatter
+import com.ledevs.bromate.app.ui.list.model.EntryListModel
+import com.ledevs.bromate.data.model.Entry
+import com.ledevs.bromate.data.model.EntryType
+import javax.inject.Inject
+
+class EntryListModelMapper @Inject constructor(
+    private val context: Context,
+    private val formatter: StringFormatter
+) : Mapper<List<Entry>, List<EntryListModel>> {
+
+  override fun convert(input: List<Entry>): List<EntryListModel> {
+    return input.groupBy { formatter.format(it.date, StringFormatter.FORMAT_DAY_DESCRIPTION) }
+        .flatMap {
+          val (date, values) = it
+
+          val header = EntryListModel.EntryDateListModel(date)
+          val items = values.map { it.convertToListModel() }
+
+          listOf(header, *items.toTypedArray())
+        }
+  }
+
+  private fun Entry.convertToListModel() = EntryListModel.EntryRowListModel(
+      title,
+      description,
+      "- ${formatter.formatCurrency(totalValue)}",
+      "+ ${formatter.formatCurrency(chargeBackValue)}",
+      formatter.format(date, StringFormatter.FORMAT_HOUR_DESCRIPTION),
+      iconRes(),
+      android.R.color.white,
+      iconBackgroundColor()
+  )
+
+  private fun Entry.iconRes(): Drawable {
+    return ContextCompat.getDrawable(context, when (type) {
+      EntryType.GROCERIES -> R.drawable.ic_local_grocery_store_black_24dp
+      EntryType.FOOD -> R.drawable.ic_local_dining_black_24dp
+      EntryType.HOME -> R.drawable.ic_domain_black_24dp
+      EntryType.BILLS -> R.drawable.ic_account_balance_black_24dp
+    })
+  }
+
+  @ColorRes
+  private fun Entry.iconBackgroundColor(): Int {
+    return when (type) {
+      EntryType.GROCERIES -> R.color.bg_icon_groceries
+      EntryType.FOOD -> R.color.bg_icon_food
+      EntryType.HOME -> R.color.bg_icon_home
+      EntryType.BILLS -> R.color.bg_icon_bill
+    }
+  }
+
+}

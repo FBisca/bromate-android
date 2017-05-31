@@ -34,7 +34,7 @@ class ResumeView @JvmOverloads constructor(
     viewModel = context.provideViewModel(javaClass)
 
     val adapter = ResumeAdapter()
-    resumeList.addItemDecoration(ResumeItemDecorator(context))
+    resumeList.addItemDecoration(ResumeItemDecorator(resumeList))
     resumeList.layoutManager = LinearLayoutManager(context)
     resumeList.adapter = adapter
   }

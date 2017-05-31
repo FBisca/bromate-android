@@ -52,6 +52,7 @@ dependencies {
   compile "com.android.support:design:$support_version"
   compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
   compile "com.google.dagger:dagger:$dagger_version"
+  compile "com.squareup.picasso:picasso:$picasso_version"
   compile "com.squareup.retrofit2:retrofit:$retrofit2_version"
   compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
   compile "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
