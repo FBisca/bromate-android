@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
   <data>
-    <variable name="entry" type="com.ledevs.bromate.app.viewmodel.EntryViewModel.EntryRowViewModel"/>
+    <variable name="entry" type="com.ledevs.bromate.app.ui.list.model.EntryListModel.EntryRowListModel"/>
   </data>
 
   <RelativeLayout
@@ -25,9 +25,11 @@
           android:layout_width="48dp"
           android:layout_height="48dp"
           android:layout_gravity="center"
-          android:background="@drawable/bg_establishment"
+          android:background="@drawable/bg_icon"
           android:scaleType="center"
-          app:srcCompat="@drawable/ic_local_grocery_store_black_24dp"
+          app:srcCompat="@{entry.icon}"
+          app:tint="@{entry.iconColor}"
+          app:backgroundTint="@{entry.iconPortraitColor}"
           tools:backgroundTint="@color/colorAccent"
           tools:tint="@android:color/white"/>
 
@@ -56,7 +58,7 @@
           android:layout_alignParentRight="true"
           android:layout_alignParentEnd="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-          android:textColor="#689F38"
+          android:textColor="@color/positiveValueColor"
           android:maxLength="16"
           android:text="@{entry.chargeBackValue}"
           tools:text="+ R$ 200.00"/>
@@ -65,14 +67,12 @@
           android:id="@+id/entry_total_value"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentStart="true"
-          android:gravity="center_vertical|end"
           android:layout_alignRight="@+id/entry_chargeback_value"
           android:layout_alignEnd="@+id/entry_chargeback_value"
           android:layout_below="@+id/entry_chargeback_value"
+          android:gravity="center_vertical|end"
           android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-          android:textColor="#D32F2F"
+          android:textColor="@color/negativeValueColor"
           android:text="@{entry.totalValue}"
           tools:text="- R$ 300.00"/>
 
@@ -84,9 +84,11 @@
           android:layout_alignParentLeft="true"
           android:layout_toLeftOf="@+id/entry_chargeback_value"
           android:layout_toStartOf="@+id/entry_chargeback_value"
+          android:layout_marginRight="@dimen/item_margin"
+          android:layout_marginEnd="@dimen/item_margin"
           android:textAppearance="@style/TextAppearance.AppCompat.Body2"
           android:text="@{entry.title}"
-          tools:text="Mercado"/>
+          tools:text="Gloceries"/>
 
       <TextView
           android:id="@+id/entry_description"
@@ -97,10 +99,12 @@
           android:layout_alignParentStart="true"
           android:layout_toLeftOf="@+id/entry_chargeback_value"
           android:layout_toStartOf="@+id/entry_chargeback_value"
+          android:layout_marginRight="@dimen/item_margin"
+          android:layout_marginEnd="@dimen/item_margin"
           android:alpha="0.8"
           android:textAppearance="@style/TextAppearance.AppCompat.Body1"
           android:text="@{entry.description}"
-          tools:text="Uma descrição meio grande do produto"/>
+          tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
 
     </RelativeLayout>
 

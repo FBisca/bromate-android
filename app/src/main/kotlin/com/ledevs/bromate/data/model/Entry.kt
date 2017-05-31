@@ -41,5 +41,5 @@ data class Entry(
 }
 
 enum class EntryType {
-  GROCERIES
+  GROCERIES, FOOD, HOME, BILLS
 }

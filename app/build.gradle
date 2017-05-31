@@ -13,7 +13,7 @@ android {
     targetSdkVersion 25
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.ledevs.bromate.utils.AppTestRunner"
 
     vectorDrawables.useSupportLibrary = true
   }
@@ -27,6 +27,9 @@ android {
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
+    debug.java.srcDirs += 'src/debug/kotlin'
+    androidTest.java.srcDirs += 'src/testCommon/kotlin'
+    test.java.srcDirs += 'src/testCommon/kotlin'
   }
 
   dataBinding {
@@ -37,6 +40,7 @@ android {
 allOpen {
   annotation("dagger.Module")
   annotation("dagger.Provides")
+  annotation("android.support.annotation.VisibleForTesting")
 }
 
 dependencies {
@@ -46,20 +50,25 @@ dependencies {
   compile "com.android.support:cardview-v7:$support_version"
   compile "com.android.support:recyclerview-v7:$support_version"
   compile "com.android.support:design:$support_version"
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile "com.google.dagger:dagger:$dagger_version"
-  compile "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+  compile "com.squareup.picasso:picasso:$picasso_version"
   compile "com.squareup.retrofit2:retrofit:$retrofit2_version"
   compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
   compile "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
-  compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+  compile "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+  compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+  compile "de.hdodenhof:circleimageview:$circleimageview_version"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  kapt "com.android.databinding:compiler:2.3.1"
+  kapt "com.android.databinding:compiler:$databinding_version"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+  androidTestCompile "org.mockito:mockito-android:$mockito_version"
+  androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
 
-  testCompile 'junit:junit:4.12'
+  testCompile "junit:junit:$junit_version"
+  testCompile "org.mockito:mockito-core:$mockito_version"
+  testCompile "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
 }

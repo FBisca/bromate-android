@@ -4,8 +4,17 @@
     <color name="colorPrimaryDark">#17BFBE</color>
     <color name="colorAccent">#4D5BAD</color>
 
+    <color name="white">#FFFFFF</color>
     <color name="accent">#6194D6</color>
     <color name="windowBackground">#E1DDE1</color>
     <color name="dark">#B5A39F</color>
     <color name="textColor">#678685</color>
+
+    <color name="positiveValueColor">#689F38</color>
+    <color name="negativeValueColor">#D32F2F</color>
+
+    <color name="bg_icon_groceries">@color/colorAccent</color>
+    <color name="bg_icon_food">@color/negativeValueColor</color>
+    <color name="bg_icon_home">#009688</color>
+    <color name="bg_icon_bill">#F57C00</color>
 </resources>

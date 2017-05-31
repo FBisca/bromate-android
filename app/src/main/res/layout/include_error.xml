@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/item_margin"
+      android:background="@android:color/white"
+      app:cardCornerRadius="5dp"
+      app:cardElevation="5dp"
+      app:cardUseCompatPadding="true"
+      app:contentPadding="@dimen/screen_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <android.support.v7.widget.AppCompatImageView
+          android:layout_width="64dp"
+          android:layout_height="64dp"
+          android:layout_gravity="center"
+          android:scaleType="fitCenter"
+          android:alpha="0.7"
+          app:srcCompat="@drawable/ic_disappointed"/>
+
+      <TextView
+          android:id="@+id/error_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="@dimen/screen_margin"
+          android:textAppearance="@style/TextAppearance.AppCompat.Title"
+          tools:text="Error while loading list"/>
+
+      <TextView
+          android:id="@+id/error_message"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+          tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus."/>
+
+      <Button
+          android:id="@+id/retry_button"
+          style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end"
+          android:text="@string/try_again"/>
+    </LinearLayout>
+
+
+  </android.support.v7.widget.CardView>
+
+</FrameLayout>

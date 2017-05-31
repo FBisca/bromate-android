@@ -1,0 +1,42 @@
+[
+  {
+    "user": {
+      "name": "John Doe",
+      "email": "johndoe@gmail.com",
+      "imageUrl": "http://68.media.tumblr.com/avatar_72f36b0f112e_128.png"
+    },
+    "balance": -1000.0
+  },
+  {
+    "user": {
+      "name": "Vergil Theodore",
+      "email": "vergil@gmail.com",
+      "imageUrl": "https://68.media.tumblr.com/avatar_6cefb9fe2805_128.png"
+    },
+    "balance": 320.3
+  },
+  {
+    "user": {
+      "name": "Rene Osborne",
+      "email": "osborne@gmail.com",
+      "imageUrl": "https://68.media.tumblr.com/avatar_d93a0a4731ef_128.png"
+    },
+    "balance": 19.3
+  },
+  {
+    "user": {
+      "name": "Billy Bobby",
+      "email": "bob@gmail.com",
+      "imageUrl": "http://68.media.tumblr.com/avatar_36610a525b3b_128.png"
+    },
+    "balance": -2344.1
+  },
+  {
+    "user": {
+      "name": "Lucky Ned",
+      "email": "ned@gmail.com",
+      "imageUrl": "http://33.media.tumblr.com/avatar_3df9f1b73c4a_128.png"
+    },
+    "balance": 223.1
+  }
+]
