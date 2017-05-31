@@ -27,6 +27,9 @@
           android:layout_gravity="center"
           android:background="@drawable/bg_icon"
           android:scaleType="center"
+          app:srcCompat="@{entry.icon}"
+          app:tint="@{entry.iconColor}"
+          app:backgroundTint="@{entry.iconPortraitColor}"
           tools:backgroundTint="@color/colorAccent"
           tools:tint="@android:color/white"/>
 

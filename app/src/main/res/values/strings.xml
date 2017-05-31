@@ -4,8 +4,12 @@
   <string name="home">Home</string>
   <string name="entries">Entries</string>
   <string name="value_to_receive">Value to receive</string>
-  <string name="user_value_to_receive">Value owned to you by this user</string>
+  <string name="user_value_to_receive">Owns you</string>
   <string name="value_owned">Value owned</string>
-  <string name="user_value_owned">Value you own to this user</string>
+  <string name="user_value_owned">Lend you</string>
   <string name="try_again">Try Again</string>
+  <string name="resume_error_title">Error while loading screen</string>
+  <string name="resume_error_message">Something bad has happen and we could not show the list.\nPlease try again.</string>
+  <string name="entry_error_title">Error while loading list</string>
+  <string name="entry_error_message">Something bad has happen and we could not show the list.\nPlease try again.</string>
 </resources>

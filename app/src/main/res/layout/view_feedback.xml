@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <include android:id="@+id/error_view"
+           layout="@layout/include_error"
+           android:visibility="gone"/>
+
+  <include android:id="@+id/loading_view"
+           layout="@layout/include_loading"
+           android:visibility="gone"/>
+
+</merge>

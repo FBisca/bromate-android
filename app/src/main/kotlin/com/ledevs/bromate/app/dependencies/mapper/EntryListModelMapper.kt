@@ -1,9 +1,8 @@
 package com.ledevs.bromate.app.dependencies.mapper
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
-import android.support.v4.content.ContextCompat
+import android.support.annotation.DrawableRes
 import com.ledevs.bromate.R
 import com.ledevs.bromate.app.dependencies.formatter.StringFormatter
 import com.ledevs.bromate.app.ui.list.model.EntryListModel
@@ -32,20 +31,21 @@ class EntryListModelMapper @Inject constructor(
       title,
       description,
       "- ${formatter.formatCurrency(totalValue)}",
-      "+ ${formatter.formatCurrency(chargeBackValue)}",
+      formatter.formatCurrency(chargeBackValue),
       formatter.format(date, StringFormatter.FORMAT_HOUR_DESCRIPTION),
       iconRes(),
       android.R.color.white,
       iconBackgroundColor()
   )
 
-  private fun Entry.iconRes(): Drawable {
-    return ContextCompat.getDrawable(context, when (type) {
+  @DrawableRes
+  private fun Entry.iconRes(): Int {
+    return when (type) {
       EntryType.GROCERIES -> R.drawable.ic_local_grocery_store_black_24dp
       EntryType.FOOD -> R.drawable.ic_local_dining_black_24dp
       EntryType.HOME -> R.drawable.ic_domain_black_24dp
       EntryType.BILLS -> R.drawable.ic_account_balance_black_24dp
-    })
+    }
   }
 
   @ColorRes

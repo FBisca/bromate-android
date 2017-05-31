@@ -56,28 +56,12 @@
           tools:text="Regina Casé"/>
 
       <TextView
-          android:id="@+id/total_value"
+          android:id="@+id/total_value_description"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_below="@+id/user_name"
           android:layout_marginLeft="@dimen/screen_margin"
           android:layout_marginRight="@dimen/screen_margin"
-          android:layout_marginTop="@dimen/item_margin"
-          android:layout_toEndOf="@+id/user_frame"
-          android:layout_toRightOf="@+id/user_frame"
-          android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-          android:textColor="@{userInfo.valueNegative ? @color/negativeValueColor : @color/positiveValueColor}"
-          android:text="@{userInfo.balance}"
-          tools:text="R$ 1.200,00"/>
-
-      <TextView
-          android:id="@+id/total_value_description"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/total_value"
-          android:layout_marginLeft="@dimen/screen_margin"
-          android:layout_marginRight="@dimen/screen_margin"
-          android:layout_marginBottom="@dimen/item_margin"
           android:layout_toEndOf="@+id/user_frame"
           android:layout_toRightOf="@+id/user_frame"
           android:alpha="0.6"
@@ -85,6 +69,23 @@
           android:textColor="@android:color/black"
           android:text="@{userInfo.valueNegative ? @string/user_value_owned : @string/user_value_to_receive}"
           tools:text="@string/user_value_owned"/>
+
+      <TextView
+          android:id="@+id/total_value"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/total_value_description"
+          android:layout_marginLeft="@dimen/screen_margin"
+          android:layout_marginRight="@dimen/screen_margin"
+          android:layout_marginTop="@dimen/item_margin"
+          android:layout_marginBottom="@dimen/item_margin"
+          android:layout_toEndOf="@+id/user_frame"
+          android:layout_toRightOf="@+id/user_frame"
+          android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+          android:textColor="@{userInfo.valueNegative ? @color/negativeValueColor : @color/positiveValueColor}"
+          android:text="@{userInfo.balance}"
+          tools:text="R$ 1.200,00"/>
+
 
     </RelativeLayout>
 

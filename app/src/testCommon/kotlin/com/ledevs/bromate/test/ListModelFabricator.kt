@@ -23,7 +23,7 @@ object ListModelFabricator {
       totalValue,
       chargeBackValue,
       hour,
-      null,
+      1,
       1,
       1
   )

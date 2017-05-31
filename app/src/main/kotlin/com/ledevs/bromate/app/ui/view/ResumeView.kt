@@ -14,8 +14,9 @@ import com.ledevs.bromate.app.ui.list.model.ResumeListModel
 import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.ResumeViewModel
 import com.ledevs.bromate.extensions.provideViewModel
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.disposables.Disposables
+import java.util.concurrent.TimeUnit
 
 class ResumeView @JvmOverloads constructor(
     context: Context,
@@ -24,9 +25,10 @@ class ResumeView @JvmOverloads constructor(
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
   private val resumeList by lazy { findViewById(R.id.list_resume) as RecyclerView }
+  private val feedbackView by lazy { findViewById(R.id.feedback_view) as FeedbackView }
   private val viewModel: ResumeViewModel
 
-  private var subscription: Disposable = Disposables.empty()
+  private var disposables = CompositeDisposable()
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_resume, this)
@@ -41,15 +43,13 @@ class ResumeView @JvmOverloads constructor(
 
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
-    subscription = viewModel.getResume().subscribe(
-        { showResume(it) },
-        { showError() }
-    )
+    getResume()
+    listenForRetries()
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    subscription.dispose()
+    disposables.clear()
   }
 
   fun showResume(list: List<ResumeListModel>) {
@@ -61,6 +61,35 @@ class ResumeView @JvmOverloads constructor(
   }
 
   fun showError() {
-
+    feedbackView.showError(R.string.resume_error_title, R.string.resume_error_message)
   }
+
+  private fun showLoadingIfNeeded() {
+    if (resumeList.adapter.itemCount == 0) {
+      feedbackView.showLoading()
+    }
+  }
+
+  private fun listenForRetries() {
+    feedbackView.retryEvents()
+        .throttleFirst(300, TimeUnit.MILLISECONDS)
+        .subscribe { getResume() }
+        .toDisposable()
+  }
+
+  private fun getResume() {
+    viewModel.getResume()
+        .doOnSubscribe { showLoadingIfNeeded() }
+        .doOnEvent { _, _ -> feedbackView.hideLoading() }
+        .subscribe(
+            { showResume(it) },
+            { showError() }
+        )
+        .toDisposable()
+  }
+
+  private fun Disposable.toDisposable() {
+    disposables.add(this)
+  }
+
 }

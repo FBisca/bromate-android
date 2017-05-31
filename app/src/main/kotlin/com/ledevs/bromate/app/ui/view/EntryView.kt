@@ -16,6 +16,7 @@ import com.ledevs.bromate.app.viewmodel.EntryViewModel
 import com.ledevs.bromate.extensions.provideViewModel
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
+import java.util.concurrent.TimeUnit
 
 class EntryView @JvmOverloads constructor(
     context: Context,
@@ -26,7 +27,10 @@ class EntryView @JvmOverloads constructor(
   private val viewModel: EntryViewModel
 
   private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
-  private var subscription: Disposable = Disposables.empty()
+  private val feedbackView by lazy { findViewById(R.id.feedback_view) as FeedbackView }
+
+  private var entrySubscription: Disposable = Disposables.empty()
+  private var retryEventsSubscription: Disposable = Disposables.empty()
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_entry, this)
@@ -41,18 +45,13 @@ class EntryView @JvmOverloads constructor(
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
     getEntries()
-  }
-
-  private fun getEntries() {
-    subscription = viewModel.getEntries().subscribe(
-        { showEntryList(it) },
-        { showEntryLoadError() }
-    )
+    listenForRetries()
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    subscription.dispose()
+    entrySubscription.dispose()
+    retryEventsSubscription.dispose()
   }
 
   fun showEntryList(entries: List<EntryListModel>) {
@@ -63,7 +62,33 @@ class EntryView @JvmOverloads constructor(
     diffResult.dispatchUpdatesTo(adapter)
   }
 
-  fun showEntryLoadError() {
+  fun showLoadingIfNeeded() {
+    if (entryList.adapter.itemCount == 0 || feedbackView.isShown) {
+      feedbackView.showLoading()
+    }
+  }
 
+  fun showEntryLoadError() {
+    feedbackView.showError(R.string.entry_error_title, R.string.entry_error_message)
+  }
+
+  private fun getEntries() {
+    entrySubscription = viewModel.getEntries()
+        .doOnSubscribe { showLoadingIfNeeded() }
+        .doOnEvent { _, _ -> feedbackView.hideLoading() }
+        .subscribe(
+            { showEntryList(it) },
+            { showEntryLoadError() }
+        )
+  }
+
+  private fun listenForRetries() {
+    retryEventsSubscription = feedbackView.retryEvents()
+        .throttleFirst(300, TimeUnit.MILLISECONDS)
+        .subscribe { tryAgainClick() }
+  }
+
+  private fun tryAgainClick() {
+    getEntries()
   }
 }
