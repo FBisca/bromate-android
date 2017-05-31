@@ -16,23 +16,29 @@ fun loadImage(view: CircleImageView, url: String) {
 
 @BindingAdapter("app:srcCompat", "app:tint")
 fun loadVectorDrawable(view: AppCompatImageView, @DrawableRes iconRes: Int, @ColorRes colorRes: Int?) {
-  view.setImageResource(iconRes)
+  try {
+    view.setImageResource(iconRes)
 
-  val mutated = view.drawable?.let { DrawableCompat.wrap(it).mutate() }
-  val color = colorRes?.let { ContextCompat.getColor(view.context, colorRes) }
+    val mutated = view.drawable?.let { DrawableCompat.wrap(it).mutate() }
+    val color = colorRes?.let { ContextCompat.getColor(view.context, colorRes) }
 
-  if (mutated != null && color != null) {
-    DrawableCompat.setTint(mutated, color)
+    if (mutated != null && color != null) {
+      DrawableCompat.setTint(mutated, color)
+    }
+  } catch (e: RuntimeException) {
   }
 }
 
 @BindingAdapter("app:backgroundTint")
 fun loadBackgroundTint(view: AppCompatImageView, @ColorRes colorRes: Int?) {
-  val mutated = view.background?.let { DrawableCompat.wrap(it).mutate() }
-  val color = colorRes?.let { ContextCompat.getColor(view.context, colorRes) }
+  try {
+    val mutated = view.background?.let { DrawableCompat.wrap(it).mutate() }
+    val color = colorRes?.let { ContextCompat.getColor(view.context, colorRes) }
 
-  if (mutated != null && color != null) {
-    DrawableCompat.setTint(mutated, color)
+    if (mutated != null && color != null) {
+      DrawableCompat.setTint(mutated, color)
+    }
+  } catch (e: RuntimeException) {
   }
 }
 

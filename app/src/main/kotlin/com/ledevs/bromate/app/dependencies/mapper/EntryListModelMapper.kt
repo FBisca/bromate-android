@@ -1,17 +1,17 @@
 package com.ledevs.bromate.app.dependencies.mapper
 
-import android.content.Context
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.annotation.VisibleForTesting
 import com.ledevs.bromate.R
-import com.ledevs.bromate.app.dependencies.formatter.StringFormatter
+import com.ledevs.bromate.app.dependencies.parser.StringFormatter
 import com.ledevs.bromate.app.ui.list.model.EntryListModel
 import com.ledevs.bromate.data.model.Entry
 import com.ledevs.bromate.data.model.EntryType
 import javax.inject.Inject
 
+@VisibleForTesting
 class EntryListModelMapper @Inject constructor(
-    private val context: Context,
     private val formatter: StringFormatter
 ) : Mapper<List<Entry>, List<EntryListModel>> {
 
@@ -34,7 +34,7 @@ class EntryListModelMapper @Inject constructor(
       formatter.formatCurrency(chargeBackValue),
       formatter.format(date, StringFormatter.FORMAT_HOUR_DESCRIPTION),
       iconRes(),
-      android.R.color.white,
+      R.color.white,
       iconBackgroundColor()
   )
 

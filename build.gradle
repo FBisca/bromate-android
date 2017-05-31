@@ -13,6 +13,7 @@ buildscript {
   ext.databinding_version = "2.3.1"
   ext.espresso_version = "2.2.2"
   ext.junit_version = "4.12"
+  ext.mockwebserver_version = "3.6.0"
 
   repositories {
     jcenter()

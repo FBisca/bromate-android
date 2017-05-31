@@ -2,6 +2,8 @@ package com.ledevs.bromate.test
 
 import com.ledevs.bromate.data.model.Entry
 import com.ledevs.bromate.data.model.EntryType
+import com.ledevs.bromate.data.model.User
+import com.ledevs.bromate.data.model.UserBalance
 import java.util.Date
 
 object ModelFabricator {
@@ -20,5 +22,23 @@ object ModelFabricator {
       chargeBackValue,
       date,
       type
+  )
+
+  fun user(
+      name: String = "John Doe",
+      email: String = "doedoe@gmail.com",
+      imageUrl: String = "http://facebook.com/doe/profileimage"
+  ) = User(
+      name,
+      email,
+      imageUrl
+  )
+
+  fun userBalance(
+      user: User = user(),
+      balance: Double = 10.0
+  ) = UserBalance(
+      user,
+      balance
   )
 }

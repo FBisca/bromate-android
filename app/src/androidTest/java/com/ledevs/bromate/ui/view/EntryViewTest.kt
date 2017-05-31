@@ -5,6 +5,8 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
+import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.runner.AndroidJUnit4
 import com.ledevs.bromate.R
@@ -24,6 +26,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations.initMocks
+import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class EntryViewTest {
@@ -72,6 +75,15 @@ class EntryViewTest {
         .check(matches(hasDescendant(withText(rowEntry.description))))
         .check(matches(hasDescendant(withText(rowEntry.chargeBackValue))))
         .check(matches(hasDescendant(withText(rowEntry.totalValue))))
+  }
+
+  @Test
+  fun testListError() {
+    `when`(viewModel.getEntries()).thenReturn(Single.error(IOException()))
+
+    viewRule.attachView()
+
+    onView(withId(R.id.error_view)).check(matches(isDisplayed()))
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {

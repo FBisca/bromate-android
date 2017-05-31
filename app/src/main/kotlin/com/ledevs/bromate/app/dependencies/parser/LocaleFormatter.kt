@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.dependencies.formatter
+package com.ledevs.bromate.app.dependencies.parser
 
 import java.text.NumberFormat
 import java.text.SimpleDateFormat

@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.dependencies.formatter
+package com.ledevs.bromate.app.dependencies.parser
 
 import java.util.Date
 
@@ -7,7 +7,7 @@ interface StringFormatter {
     const val FORMAT_YEAR_MONTH = "yyyy-MM"
     const val FORMAT_DAY_DESCRIPTION = "EEEE, dd"
     const val FORMAT_HOUR_DESCRIPTION = "HH:MM"
-    const val FORMAT_TIMESTAMP = "yyyy-MM-dd HH:MM:ss"
+    const val FORMAT_TIMESTAMP = "yyyy-MM-dd HH:mm:ss"
   }
 
   fun format(date: Date, format: String): String

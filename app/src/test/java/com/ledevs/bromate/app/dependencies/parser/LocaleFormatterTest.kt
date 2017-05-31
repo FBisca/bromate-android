@@ -1,4 +1,4 @@
-package com.ledevs.bromate.app.dependencies.formatter
+package com.ledevs.bromate.app.dependencies.parser
 
 import junit.framework.Assert.assertEquals
 import org.junit.Test
@@ -26,6 +26,6 @@ class LocaleFormatterTest {
     calendar.set(1991, 2, 10, 12, 0, 0)
 
     val date = formatter.parse("1991-03-10 12:00:00", StringFormatter.FORMAT_TIMESTAMP)
-    assertEquals(calendar.time, date.time)
+    assertEquals(calendar.time, date)
   }
 }

@@ -4,6 +4,7 @@ import android.support.annotation.IdRes
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.runner.AndroidJUnit4
@@ -24,6 +25,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations.initMocks
+import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class ResumeViewTest {
@@ -71,8 +73,15 @@ class ResumeViewTest {
     onView(listMatcher(R.id.list_resume).atPosition(1))
         .check(matches(hasDescendant(withText(user.userName))))
         .check(matches(hasDescendant(withText(user.balance))))
+  }
 
-    Thread.sleep(10000)
+  @Test
+  fun testListError() {
+    `when`(viewModel.getResume()).thenReturn(Single.error(IOException()))
+
+    viewRule.attachView()
+
+    onView(ViewMatchers.withId(R.id.error_view)).check(matches(ViewMatchers.isDisplayed()))
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {
