@@ -20,4 +20,8 @@ class LocaleFormatter(private val locale: Locale) : StringFormatter {
   override fun parse(dateString: String, format: String): Date {
     return SimpleDateFormat(format, locale).parse(dateString)
   }
+
+  override fun formatTime(date: Date): String {
+    return SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT).format(date)
+  }
 }

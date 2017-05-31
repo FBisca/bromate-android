@@ -1,5 +1,6 @@
 package com.ledevs.bromate.app.dependencies.parser
 
+import com.ledevs.bromate.test.DateCreator
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 import java.util.Calendar
@@ -9,7 +10,7 @@ class LocaleFormatterTest {
 
 
   @Test
-  fun `test_simple_date_format`() {
+  fun test_simple_date_format() {
     val formatter = LocaleFormatter(Locale.ENGLISH)
     val calendar = Calendar.getInstance()
     calendar.set(1991, 2, 10, 12, 0, 0)
@@ -19,7 +20,7 @@ class LocaleFormatterTest {
   }
 
   @Test
-  fun `test_simple_parser`() {
+  fun test_simple_parser() {
     val formatter = LocaleFormatter(Locale.ENGLISH)
     val calendar = Calendar.getInstance()
     calendar.clear()
@@ -27,5 +28,13 @@ class LocaleFormatterTest {
 
     val date = formatter.parse("1991-03-10 12:00:00", StringFormatter.FORMAT_TIMESTAMP)
     assertEquals(calendar.time, date)
+  }
+
+  @Test
+  fun test_time_parser() {
+    val formatter = LocaleFormatter(Locale.ENGLISH)
+
+    val date = formatter.formatTime(DateCreator.createHour(12, 0))
+    assertEquals("12:00 PM", date)
   }
 }

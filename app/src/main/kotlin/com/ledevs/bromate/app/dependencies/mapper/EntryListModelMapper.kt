@@ -32,7 +32,7 @@ class EntryListModelMapper @Inject constructor(
       description,
       "- ${formatter.formatCurrency(totalValue)}",
       formatter.formatCurrency(chargeBackValue),
-      formatter.format(date, StringFormatter.FORMAT_HOUR_DESCRIPTION),
+      formatter.formatTime(date),
       iconRes(),
       R.color.white,
       iconBackgroundColor()
