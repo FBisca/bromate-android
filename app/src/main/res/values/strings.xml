@@ -4,9 +4,9 @@
   <string name="home">Home</string>
   <string name="entries">Entries</string>
   <string name="value_to_receive">Value to receive</string>
-  <string name="user_value_to_receive">Owns you</string>
-  <string name="value_owned">Value owned</string>
-  <string name="user_value_owned">Lend you</string>
+  <string name="user_value_to_receive">Owes you</string>
+  <string name="value_owed">Value owed</string>
+  <string name="user_value_owed">Lend you</string>
   <string name="try_again">Try Again</string>
   <string name="resume_error_title">Error while loading screen</string>
   <string name="resume_error_message">Something bad has happen and we could not show the list.\nPlease try again.</string>

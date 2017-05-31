@@ -3,7 +3,7 @@ package com.ledevs.bromate.app.ui.list.model
 sealed class ResumeListModel {
   data class ResumeHeaderListModel(
       val valueToReceive: String,
-      val valueOwned: String
+      val valueOwed: String
   ) : ResumeListModel()
 
   data class ResumeUserListModel(

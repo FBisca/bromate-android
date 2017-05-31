@@ -67,8 +67,8 @@
           android:alpha="0.6"
           android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
           android:textColor="@android:color/black"
-          android:text="@{userInfo.valueNegative ? @string/user_value_owned : @string/user_value_to_receive}"
-          tools:text="@string/user_value_owned"/>
+          android:text="@{userInfo.valueNegative ? @string/user_value_owed : @string/user_value_to_receive}"
+          tools:text="@string/user_value_owed"/>
 
       <TextView
           android:id="@+id/total_value"

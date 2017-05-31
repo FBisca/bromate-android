@@ -30,10 +30,10 @@ object ListModelFabricator {
 
   fun resumeHeaderModel(
       valueToReceive: String = "$1.400.00",
-      valueOwned: String = "$300.00"
+      valueOwed: String = "$300.00"
   ) = ResumeListModel.ResumeHeaderListModel(
       valueToReceive,
-      valueOwned
+      valueOwed
   )
 
   fun resumeUserModel(

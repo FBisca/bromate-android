@@ -56,7 +56,7 @@
             android:layout_toRightOf="@+id/image_logo"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
-            android:text="@{resume.valueOwned}"
+            android:text="@{resume.valueOwed}"
             tools:text="R$ 400,00"/>
 
         <TextView
@@ -69,7 +69,7 @@
             android:alpha="0.85"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@android:color/white"
-            android:text="@string/value_owned"/>
+            android:text="@string/value_owed"/>
 
     </RelativeLayout>
 </layout>

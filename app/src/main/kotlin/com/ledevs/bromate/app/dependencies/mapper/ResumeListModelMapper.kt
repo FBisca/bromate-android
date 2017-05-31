@@ -12,17 +12,17 @@ class ResumeListModelMapper @Inject constructor(
 ) : Mapper<List<UserBalance>, List<ResumeListModel>> {
 
   override fun convert(input: List<UserBalance>): List<ResumeListModel> {
-    val (totalToReceive, totalOwned) = input.fold(0.0 to 0.0, { (totalToReceive, totalOwned), userBalance ->
+    val (totalToReceive, totalOwed) = input.fold(0.0 to 0.0, { (totalToReceive, totalOwed), userBalance ->
       if (userBalance.balance < 0) {
-        totalToReceive + userBalance.balance to totalOwned
+        totalToReceive + userBalance.balance to totalOwed
       } else {
-        totalToReceive to totalOwned + userBalance.balance
+        totalToReceive to totalOwed + userBalance.balance
       }
     })
 
     val header = ResumeListModel.ResumeHeaderListModel(
         formatter.formatCurrency(totalToReceive),
-        formatter.formatCurrency(totalOwned)
+        formatter.formatCurrency(totalOwed)
     )
 
     val userList = input.map { it.convertToListModel() }

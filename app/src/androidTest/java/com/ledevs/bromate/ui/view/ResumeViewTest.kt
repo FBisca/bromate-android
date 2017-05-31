@@ -67,7 +67,7 @@ class ResumeViewTest {
     viewRule.attachView()
 
     onView(listMatcher(R.id.list_resume).atPosition(0))
-        .check(matches(hasDescendant(withText(header.valueOwned))))
+        .check(matches(hasDescendant(withText(header.valueOwed))))
         .check(matches(hasDescendant(withText(header.valueToReceive))))
 
     onView(listMatcher(R.id.list_resume).atPosition(1))

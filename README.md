@@ -6,7 +6,7 @@ I'm using this project for study, experimenting new technologies and new pattern
 
 Technologies
 =====================
-The architecture that I choosed is MVVM, which Google's Architecure guides started to recommend since **Google IO 17**, but I'm not using the offical Google's architecure library.
+The architecture that I chose is MVVM, which Google's Architecture guides started to recommend since **Google IO 17**, but I'm not using the official Google's architecture library.
 _(I'm experimenting a code without fragments)_
 
 I tried to use very recent technologies from the Android community, and others that I've never used like `Moshi` and `DataBinding`.
