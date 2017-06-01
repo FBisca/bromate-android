@@ -29,7 +29,7 @@ import org.mockito.MockitoAnnotations.initMocks
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-class EntryViewTest {
+class EntryViewTest : BaseViewTest() {
 
   @Rule
   @JvmField
@@ -48,12 +48,16 @@ class EntryViewTest {
     `when`(component.viewModel()).thenReturn(viewModel)
     val testApp = InstrumentationRegistry.getTargetContext().applicationContext as TestApp
     testApp.addStubViewModelComponent(EntryView::class.java, component)
+
+    disableAnimations()
   }
 
   @After
   fun clear() {
     val testApp = InstrumentationRegistry.getTargetContext().applicationContext as TestApp
     testApp.removeStubs()
+
+    enableAnimations()
   }
 
   @Test
@@ -83,7 +87,8 @@ class EntryViewTest {
 
     viewRule.attachView()
 
-    onView(withId(R.id.error_view)).check(matches(isDisplayed()))
+    onView(withId(R.id.error_view))
+        .check(matches(isDisplayed()))
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {

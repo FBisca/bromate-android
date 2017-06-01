@@ -16,6 +16,7 @@ sealed class EntryViewHolder(
   ) : EntryViewHolder(dataBinding) {
     override fun bind(entity: EntryListModel) {
       dataBinding.entry = entity as EntryRowListModel
+      dataBinding.executePendingBindings()
     }
   }
 
@@ -24,6 +25,7 @@ sealed class EntryViewHolder(
   ) : EntryViewHolder(dataBinding) {
     override fun bind(entity: EntryListModel) {
       dataBinding.entry = entity as EntryDateListModel
+      dataBinding.executePendingBindings()
     }
   }
 }

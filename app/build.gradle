@@ -64,6 +64,7 @@ dependencies {
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
   androidTestCompile "org.mockito:mockito-android:$mockito_version"
+  androidTestCompile "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version"
   androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
     exclude group: 'com.android.support', module: 'support-annotations'
   })

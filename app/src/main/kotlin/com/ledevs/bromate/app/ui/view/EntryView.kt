@@ -14,8 +14,8 @@ import com.ledevs.bromate.app.ui.list.model.EntryListModel
 import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.EntryViewModel
 import com.ledevs.bromate.extensions.provideViewModel
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.disposables.Disposables
 import java.util.concurrent.TimeUnit
 
 class EntryView @JvmOverloads constructor(
@@ -29,8 +29,7 @@ class EntryView @JvmOverloads constructor(
   private val entryList by lazy { findViewById(R.id.entry_list) as RecyclerView }
   private val feedbackView by lazy { findViewById(R.id.feedback_view) as FeedbackView }
 
-  private var entrySubscription: Disposable = Disposables.empty()
-  private var retryEventsSubscription: Disposable = Disposables.empty()
+  private var disposables = CompositeDisposable()
 
   init {
     LayoutInflater.from(context).inflate(R.layout.view_entry, this)
@@ -50,8 +49,7 @@ class EntryView @JvmOverloads constructor(
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    entrySubscription.dispose()
-    retryEventsSubscription.dispose()
+    disposables.clear()
   }
 
   fun showEntryList(entries: List<EntryListModel>) {
@@ -73,22 +71,28 @@ class EntryView @JvmOverloads constructor(
   }
 
   private fun getEntries() {
-    entrySubscription = viewModel.getEntries()
+    viewModel.getEntries()
         .doOnSubscribe { showLoadingIfNeeded() }
         .doOnEvent { _, _ -> feedbackView.hideLoading() }
         .subscribe(
             { showEntryList(it) },
             { showEntryLoadError() }
         )
+        .toDisposable()
   }
 
   private fun listenForRetries() {
-    retryEventsSubscription = feedbackView.retryEvents()
+    feedbackView.retryEvents()
         .throttleFirst(300, TimeUnit.MILLISECONDS)
         .subscribe { tryAgainClick() }
+        .toDisposable()
   }
 
   private fun tryAgainClick() {
     getEntries()
+  }
+
+  private fun Disposable.toDisposable() {
+    disposables.add(this)
   }
 }

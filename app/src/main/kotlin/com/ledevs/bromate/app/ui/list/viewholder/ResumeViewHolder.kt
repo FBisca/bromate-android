@@ -23,6 +23,7 @@ sealed class ResumeViewHolder(
 
     override fun bind(entity: ResumeListModel) {
       dataBinding.resume = entity as ResumeListModel.ResumeHeaderListModel
+      dataBinding.executePendingBindings()
     }
   }
 
@@ -31,6 +32,7 @@ sealed class ResumeViewHolder(
   ) : ResumeViewHolder(dataBinding) {
     override fun bind(entity: ResumeListModel) {
       dataBinding.userInfo = entity as ResumeListModel.ResumeUserListModel
+      dataBinding.executePendingBindings()
     }
   }
 

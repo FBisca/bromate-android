@@ -4,7 +4,7 @@
           package="com.ledevs.bromate">
 
     <uses-permission
-        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        android:name="android.permission.SET_ANIMATION_SCALE"
         tools:ignore="ProtectedPermissions" />
 
     <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">

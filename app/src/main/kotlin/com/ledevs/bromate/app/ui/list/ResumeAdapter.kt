@@ -2,12 +2,12 @@ package com.ledevs.bromate.app.ui.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder
-import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeHeaderViewHolder
-import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeUserViewHolder
 import com.ledevs.bromate.app.ui.list.model.ResumeListModel
 import com.ledevs.bromate.app.ui.list.model.ResumeListModel.ResumeHeaderListModel
 import com.ledevs.bromate.app.ui.list.model.ResumeListModel.ResumeUserListModel
+import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder
+import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeHeaderViewHolder
+import com.ledevs.bromate.app.ui.list.viewholder.ResumeViewHolder.ResumeUserViewHolder
 import com.ledevs.bromate.databinding.RowResumeBinding
 import com.ledevs.bromate.databinding.RowResumeUserBinding
 import com.ledevs.bromate.extensions.layoutInflater

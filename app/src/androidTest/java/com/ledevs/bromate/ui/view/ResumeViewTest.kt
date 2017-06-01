@@ -8,6 +8,7 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.runner.AndroidJUnit4
+import android.util.Log
 import com.ledevs.bromate.R
 import com.ledevs.bromate.TestApp
 import com.ledevs.bromate.app.ui.view.ResumeView
@@ -28,7 +29,7 @@ import org.mockito.MockitoAnnotations.initMocks
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-class ResumeViewTest {
+class ResumeViewTest : BaseViewTest() {
 
   @Rule
   @JvmField
@@ -47,12 +48,16 @@ class ResumeViewTest {
     `when`(component.viewModel()).thenReturn(viewModel)
     val testApp = InstrumentationRegistry.getTargetContext().applicationContext as TestApp
     testApp.addStubViewModelComponent(ResumeView::class.java, component)
+
+    disableAnimations()
   }
 
   @After
   fun clear() {
     val testApp = InstrumentationRegistry.getTargetContext().applicationContext as TestApp
     testApp.removeStubs()
+
+    enableAnimations()
   }
 
   @Test
@@ -81,7 +86,8 @@ class ResumeViewTest {
 
     viewRule.attachView()
 
-    onView(ViewMatchers.withId(R.id.error_view)).check(matches(ViewMatchers.isDisplayed()))
+    onView(ViewMatchers.withId(R.id.error_view))
+        .check(matches(ViewMatchers.isDisplayed()))
   }
 
   private fun listMatcher(@IdRes id: Int): RecyclerViewMatcher {
