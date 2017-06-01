@@ -14,6 +14,5 @@ I tried to use very recent technologies from the Android community, and others t
 Known issues
 =====================
 - Save Instance State is not yet implemented in this architecture
-- For some weird reason my customs `@BindingAdapter` are throwing **ResourceNotFound** in my instrumentation tests
 - Lack of persistence
 - Lack of a webserver
