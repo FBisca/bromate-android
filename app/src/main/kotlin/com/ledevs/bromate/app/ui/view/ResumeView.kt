@@ -11,9 +11,11 @@ import com.ledevs.bromate.R
 import com.ledevs.bromate.app.ui.list.ResumeAdapter
 import com.ledevs.bromate.app.ui.list.decorator.ResumeItemDecorator
 import com.ledevs.bromate.app.ui.list.model.ResumeListModel
+import com.ledevs.bromate.app.ui.list.utils.RecyclerViewListener
 import com.ledevs.bromate.app.ui.list.utils.SimpleDiffCallback
 import com.ledevs.bromate.app.viewmodel.ResumeViewModel
 import com.ledevs.bromate.extensions.provideViewModel
+import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
@@ -27,6 +29,8 @@ class ResumeView @JvmOverloads constructor(
   private val resumeList by lazy { findViewById(R.id.list_resume) as RecyclerView }
   private val feedbackView by lazy { findViewById(R.id.feedback_view) as FeedbackView }
   private val viewModel: ResumeViewModel
+  private val recyclerViewListener: RecyclerViewListener
+  private val itemDecorator: ResumeItemDecorator
 
   private var disposables = CompositeDisposable()
 
@@ -34,11 +38,17 @@ class ResumeView @JvmOverloads constructor(
     LayoutInflater.from(context).inflate(R.layout.view_resume, this)
 
     viewModel = context.provideViewModel(javaClass)
+    itemDecorator = ResumeItemDecorator(context)
 
     val adapter = ResumeAdapter()
-    resumeList.addItemDecoration(ResumeItemDecorator(resumeList))
+
+    resumeList.addItemDecoration(itemDecorator)
     resumeList.layoutManager = LinearLayoutManager(context)
     resumeList.adapter = adapter
+
+    recyclerViewListener = RecyclerViewListener(resumeList)
+
+    listenForScroll()
   }
 
   override fun onAttachedToWindow() {
@@ -64,6 +74,10 @@ class ResumeView @JvmOverloads constructor(
     feedbackView.showError(R.string.resume_error_title, R.string.resume_error_message)
   }
 
+  fun scrollOffsetChanges(): Flowable<Int> {
+    return recyclerViewListener.offsetScrollsChanges()
+  }
+
   private fun showLoadingIfNeeded() {
     if (resumeList.adapter.itemCount == 0) {
       feedbackView.showLoading()
@@ -75,6 +89,11 @@ class ResumeView @JvmOverloads constructor(
         .throttleFirst(300, TimeUnit.MILLISECONDS)
         .subscribe { getResume() }
         .toDisposable()
+  }
+
+  private fun listenForScroll() {
+    recyclerViewListener.offsetScrollsChanges()
+        .subscribe { itemDecorator.setParentScrollOffset(it) }
   }
 
   private fun getResume() {
