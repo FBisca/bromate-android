@@ -30,8 +30,6 @@ class FeedbackView @JvmOverloads constructor(
   val fadeInAnimTime by lazy { resources.getInteger(android.R.integer.config_mediumAnimTime).toLong() }
   val fadeOutAnimTime by lazy { resources.getInteger(android.R.integer.config_shortAnimTime).toLong() }
 
-  private var viewState = ViewState.IDLE
-
   init {
     LayoutInflater.from(context).inflate(R.layout.view_feedback, this)
 
@@ -40,14 +38,14 @@ class FeedbackView @JvmOverloads constructor(
   }
 
   fun showError(title: String, message: String) {
-    viewState = ViewState.ERROR
+    cancelOngoingAnimations()
 
     errorTitle.text = title
     errorMessage.text = message
 
     when {
-      loadingView.isShown -> hideView(loadingView) { showView(errorView, viewState) }
-      else -> showView(errorView, viewState)
+      loadingView.isShown -> hideView(loadingView) { showView(errorView) }
+      else -> showView(errorView)
     }
   }
 
@@ -56,10 +54,10 @@ class FeedbackView @JvmOverloads constructor(
   }
 
   fun showLoading() {
-    viewState = ViewState.LOADING
+    cancelOngoingAnimations()
 
     when {
-      errorView.isShown -> hideView(errorView) { showView(loadingView, viewState) }
+      errorView.isShown -> hideView(errorView) { showView(loadingView) }
       else -> showView(loadingView)
     }
   }
@@ -72,45 +70,44 @@ class FeedbackView @JvmOverloads constructor(
   }
 
   fun hideLoading() {
-    viewState = ViewState.IDLE
+    cancelOngoingAnimations()
+
     hideView(loadingView)
   }
 
   fun hideError() {
-    viewState = ViewState.IDLE
+    cancelOngoingAnimations()
+
     hideView(errorView)
   }
 
-  private fun showView(view: View, stateOnCall: ViewState = viewState, endAction: (() -> Unit)? = null) {
-    if (viewState == stateOnCall) {
-      view.visibility = View.VISIBLE
+  private fun showView(view: View, endAction: (() -> Unit)? = null) {
+    view.visibility = View.VISIBLE
 
-      ViewCompat.animate(view)
-          .alpha(1f)
-          .setDuration(fadeInAnimTime)
-          .setInterpolator(FastOutSlowInInterpolator())
-          .withEndAction {
-            endAction?.invoke()
-          }
-          .start()
-    }
+    ViewCompat.animate(view)
+        .alpha(1f)
+        .setDuration(fadeInAnimTime)
+        .setInterpolator(FastOutSlowInInterpolator())
+        .withEndAction {
+          endAction?.invoke()
+        }
+        .start()
   }
 
-  private fun hideView(view: View, stateOnCall: ViewState = viewState, endAction: (() -> Unit)? = null) {
-    if (viewState == stateOnCall) {
-      ViewCompat.animate(view)
-          .alpha(0f)
-          .setDuration(fadeOutAnimTime)
-          .setInterpolator(LinearOutSlowInInterpolator())
-          .withEndAction {
-            view.visibility = View.GONE
-            endAction?.invoke()
-          }
-          .start()
-    }
+  private fun hideView(view: View, endAction: (() -> Unit)? = null) {
+    ViewCompat.animate(view)
+        .alpha(0f)
+        .setDuration(fadeOutAnimTime)
+        .setInterpolator(LinearOutSlowInInterpolator())
+        .withEndAction {
+          view.visibility = View.GONE
+          endAction?.invoke()
+        }
+        .start()
   }
 
-  enum class ViewState {
-    IDLE, LOADING, ERROR
+  private fun cancelOngoingAnimations() {
+    ViewCompat.animate(loadingView).cancel()
+    ViewCompat.animate(errorView).cancel()
   }
 }
