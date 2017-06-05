@@ -13,7 +13,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.ledevs.bromate.R
 import io.reactivex.Observable
-import org.reactivestreams.Subscription
 
 
 class FeedbackView @JvmOverloads constructor(
@@ -66,15 +65,9 @@ class FeedbackView @JvmOverloads constructor(
   }
 
   fun retryEvents(): Observable<View> {
-    return Observable.fromPublisher { publisher ->
+    return Observable.create { publisher ->
       retryButton.setOnClickListener { publisher.onNext(it) }
-      publisher.onSubscribe(object : Subscription {
-        override fun cancel() {
-          retryButton.setOnClickListener(null)
-        }
-
-        override fun request(n: Long) {}
-      })
+      publisher.setCancellable { retryButton.setOnClickListener(null) }
     }
   }
 
